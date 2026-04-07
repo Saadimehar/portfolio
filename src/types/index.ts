@@ -26,6 +26,6 @@ export interface Experience {
 export interface Skill {
   name: string;
   icon: string;
-  category: "frontend" | "backend" | "design" | "tools";
-  level: "expert" | "advanced" | "intermediate";
+  category: "frontend" | "backend" | "design" | "tools" | "languages" | "additional";
+  level?: "expert" | "advanced" | "intermediate";
 }
