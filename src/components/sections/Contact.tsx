@@ -91,6 +91,22 @@ const Contact = () => {
     setSubmitStatus("idle");
 
     try {
+      // Validate EmailJS configuration
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+
+      if (!publicKey || !serviceId || !templateId) {
+        console.error("Missing EmailJS credentials. Please configure .env.local file.");
+        console.error("Read EMAILJS_SETUP.md for setup instructions.");
+        setSubmitStatus("error");
+        setTimeout(() => {
+          setSubmitStatus("idle");
+        }, 5000);
+        setIsSubmitting(false);
+        return;
+      }
+
       // Send email using EmailJS
       const templateParams = {
         from_name: formData.name,
@@ -100,13 +116,14 @@ const Contact = () => {
         to_email: siteConfig.email,
       };
 
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
-        templateParams
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
       );
 
-      console.log("Email sent successfully!");
+      console.log("Email sent successfully!", response);
       setSubmitStatus("success");
       setFormData({
         name: "",
@@ -115,17 +132,19 @@ const Contact = () => {
         message: "",
       });
 
-      // Reset success message after 3 seconds
+      // Reset success message after 4 seconds
       setTimeout(() => {
         setSubmitStatus("idle");
-      }, 3000);
+      }, 4000);
     } catch (error) {
       console.error("Error submitting form:", error);
+      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+      console.error("Details:", errorMessage);
       setSubmitStatus("error");
 
       setTimeout(() => {
         setSubmitStatus("idle");
-      }, 3000);
+      }, 5000);
     } finally {
       setIsSubmitting(false);
     }
@@ -226,8 +245,9 @@ const Contact = () => {
                 {/* Error Message */}
                 {submitStatus === "error" && (
                   <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 animate-slide-up">
-                    <p className="text-red-600 dark:text-red-400 font-medium">
-                      ✗ Error sending message. Please try again.
+                    <p className="text-red-600 dark:text-red-400 font-medium text-sm">
+                      ✗ Unable to send message. The contact form hasn't been configured yet. <br />
+                      <span className="text-xs opacity-90">Please check the browser console for details or contact at {siteConfig.email}</span>
                     </p>
                   </div>
                 )}

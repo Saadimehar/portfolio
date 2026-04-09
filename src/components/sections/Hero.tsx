@@ -73,12 +73,12 @@ export const Hero = () => {
             </div>
 
             {/* Description */}
-            <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed line-clamp-4">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed text-justify">
               {siteConfig.description}
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col xs:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start">
+            <div className="flex gap-3 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start">
               <Link href="#contact">
                 <Button variant="primary" size="lg">
                   <span>💬</span>
@@ -95,7 +95,7 @@ export const Hero = () => {
 
             {/* Social Media Icons */}
             <div className="flex items-center gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start flex-wrap">
-              <div className="flex gap-2 sm:gap-3 flex-wrap justify-center lg:justify-start">
+              <div className="flex gap-2 sm:gap-8 ml-16 flex-wrap justify-center lg:justify-start">
                 {socialLinks.map((social) => (
                   social.url && (
                     <a
@@ -150,23 +150,6 @@ export const Hero = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <svg
-            className="w-6 h-6 text-accent/50 hover:text-accent transition-colors cursor-pointer"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
         </div>
       </div>
     </section>
