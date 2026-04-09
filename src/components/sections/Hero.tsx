@@ -46,7 +46,7 @@ const socialLinks = [
     url: siteConfig.social.figma,
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M8 0c-4.4 0-8 3.6-8 8v8c0 4.4 3.6 8 8 8h8c4.4 0 8-3.6 8-8v-8c0-4.4-3.6-8-8-8h-8zm0 2h4v6h-4v-6zm6 0c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm-6 8h4c2.2 0 4 1.8 4 4s-1.8 4-4 4h-4v-8zm0 0" />
+        <path d="M6 2a4 4 0 0 0-4 4v5a4 4 0 0 0 4 4h4V2H6zm6 0v9h4V6a4 4 0 0 0-4-4zm0 11v9h4a4 4 0 0 0 4-4v-5h-8zm-6 0a4 4 0 0 0-4 4v5a4 4 0 0 0 4 4h4v-9H6z" />
       </svg>
     ),
     bgColor: "bg-gradient-to-br from-purple-500 to-purple-700",
