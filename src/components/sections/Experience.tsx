@@ -72,12 +72,12 @@ const Experience = () => {
                 className="animate-fade-in"
                 style={{ animationDelay: `${0.3 + index * 0.1}s` }}
               >
-                <div className="flex items-start lg:items-center lg:gap-0 gap-4">
+                <div className={`flex items-center ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"}`}>
                   {/* Timeline dot - visible on lg screens only */}
-                  <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-linear-to-r from-accent to-secondary border-4 border-background shadow-lg shadow-accent/50 z-20 -ml-2.5" />
+                  <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-linear-to-r from-accent to-secondary border-4 border-background shadow-lg shadow-accent/50 z-20" />
 
                   {/* Card Container */}
-                  <div className={`w-full lg:w-1/2 ${index % 2 === 0 ? "lg:pr-12" : "lg:pl-12"}`}>
+                  <div className={`w-full lg:w-1/2 ${index % 2 === 0 ? "lg:pr-12 lg:text-right" : "lg:pl-12 lg:text-left"}`}>
                     {/* Card */}
                     <div className="group relative p-4 sm:p-6 rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/20">
                       {/* Gradient overlay on hover */}
@@ -93,14 +93,14 @@ const Experience = () => {
                           <p className="text-base sm:text-lg font-semibold text-foreground/80 mt-1">
                             {experience.company}
                           </p>
-                          <p className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1 justify-start mt-1">
+                          <p className={`text-xs sm:text-sm text-muted-foreground flex items-center gap-1 mt-1 ${index % 2 === 0 ? "lg:justify-end" : "lg:justify-start justify-start"}`}>
                             <span>📍</span>
                             {experience.location}
                           </p>
                         </div>
 
                         {/* Date Range */}
-                        <div className="flex items-center gap-2 mb-4 text-xs sm:text-sm font-medium text-accent/80">
+                        <div className={`flex items-center gap-2 mb-4 text-xs sm:text-sm font-medium text-accent/80 ${index % 2 === 0 ? "lg:justify-end" : "lg:justify-start justify-start"}`}>
                           <span>📅</span>
                           <span>
                             {experience.startDate} - {experience.endDate}
@@ -108,7 +108,7 @@ const Experience = () => {
                         </div>
 
                         {/* Type Badge */}
-                        <div className="mb-4">
+                        <div className={`mb-4 flex ${index % 2 === 0 ? "lg:justify-end" : "lg:justify-start justify-start"}`}>
                           <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-accent/10 text-accent border border-accent/20 group-hover:border-accent/50 group-hover:bg-accent/20 transition-all duration-300">
                             {experience.type === "work" ? "💼 Work" : "🎓 Education"}
                           </span>
@@ -119,16 +119,16 @@ const Experience = () => {
                           {experience.description.map((point, idx) => (
                             <li
                               key={idx}
-                              className="text-xs sm:text-sm text-muted-foreground group-hover:text-foreground/90 transition-colors duration-300 flex items-start gap-2"
+                              className={`text-xs sm:text-sm text-muted-foreground group-hover:text-foreground/90 transition-colors duration-300 flex items-start gap-2 ${index % 2 === 0 ? "lg:flex-row-reverse lg:text-right" : "lg:flex-row lg:text-left"}`}
                             >
-                              <span className="text-accent mt-0.5 flex-shrink-0">•</span>
-                              <span className="text-left">{point}</span>
+                              <span className={`text-accent mt-0.5 flex-shrink-0 ${index % 2 === 0 ? "lg:ml-2" : "lg:mr-0"}`}>•</span>
+                              <span>{point}</span>
                             </li>
                           ))}
                         </ul>
 
                         {/* Tags */}
-                        <div className="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+                        <div className={`flex flex-wrap gap-2 pt-4 border-t border-white/10 ${index % 2 === 0 ? "lg:justify-end" : "lg:justify-start"}`}>
                           {experience.tags.map((tag) => (
                             <span
                               key={tag}
