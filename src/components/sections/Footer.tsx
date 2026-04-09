@@ -107,7 +107,7 @@ const Footer = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-10 h-10 rounded-lg bg-muted/50 text-accent flex items-center justify-center transition-all duration-300 hover:scale-110 hover:text-white ${social.bgColor}`}
+                    className={`w-10 h-10 border-2 rounded-lg bg-muted/50 text-accent flex items-center justify-center transition-all duration-300 hover:scale-110 hover:text-white ${social.bgColor}`}
                     title={social.name}
                     aria-label={social.name}
                   >
