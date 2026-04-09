@@ -17,12 +17,10 @@ export const skills: Skill[] = [
   { name: "Node.js", icon: "nodejs", category: "backend" },
   { name: "Express", icon: "express", category: "backend" },
   { name: "MongoDB", icon: "mongodb", category: "backend" },
-  { name: "PostgreSQL", icon: "postgresql", category: "backend" },
   
   // Design
   { name: "UI/UX Designer", icon: "figma", category: "design" },
   { name: "Figma", icon: "figma", category: "design" },
-  { name: "Adobe XD", icon: "adobexd", category: "design" },
   
   // Tools & Platforms
   { name: "WordPress", icon: "wordpress", category: "tools" },
