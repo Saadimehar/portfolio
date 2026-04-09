@@ -95,7 +95,7 @@ export const Hero = () => {
 
             {/* Social Media Icons */}
             <div className="flex items-center gap-4 pt-4 justify-center lg:justify-start">
-              <div className="flex gap-3 flex-wrap">
+              <div className="flex gap-4 ml-8 flex-wrap">
                 {socialLinks.map((social) => (
                   social.url && (
                     <a
