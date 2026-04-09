@@ -63,10 +63,12 @@ body {
   color: var(--color-foreground);
   font-family: var(--font-sans);
   transition: background-color 0.3s ease, color 0.3s ease;
+  overscroll-behavior: none;
 }
 
 html {
   scroll-behavior: smooth;
+  overscroll-behavior: none;
 }
 
 /* Light Mode */
