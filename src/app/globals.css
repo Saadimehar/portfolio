@@ -31,8 +31,8 @@ body {
   /* Dark Mode (Default) */
   --color-background: #000000;
   --color-foreground: #ffffff;
-  --color-accent: #eb25a9;
-  --color-secondary: #8b5cf6;
+  --color-accent: #7c3aed;
+  --color-secondary: #582da3;
   --color-muted: #1f2937;
   --color-muted-foreground: #9ca3af;
   --color-border: #1f2937;
@@ -74,7 +74,7 @@ html {
   --color-background: #ffffff;
   --color-foreground: #000000;
   --color-accent: #7c3aed;
-  --color-secondary: #352257;
+  --color-secondary: #582da3;
   --color-muted: #f3f4f6;
   --color-muted-foreground: #6b7280;
   --color-border: #e5e7eb;

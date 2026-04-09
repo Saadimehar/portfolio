@@ -26,7 +26,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap";
+      "font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer";
 
     const variants = {
       primary:

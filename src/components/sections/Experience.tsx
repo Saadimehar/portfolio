@@ -47,7 +47,7 @@ const Experience = () => {
             <button
               key={type.id}
               onClick={() => setActiveType(type.id)}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 ${
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 cursor-pointer ${
                 activeType === type.id
                   ? "bg-linear-to-r from-accent to-secondary text-white shadow-lg shadow-accent/50"
                   : "bg-background/40 border border-white/10 text-foreground hover:border-accent/30 hover:bg-background/60"

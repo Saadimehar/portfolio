@@ -33,7 +33,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           
           {/* Logo */}
-          <Link href="/" className="flex items-center group">
+          <Link href="/" className="flex items-center group cursor-pointer">
             <div className="w-10 h-10 bg-linear-to-br from-accent to-secondary rounded-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
               <span className="text-background font-bold text-lg">S</span>
             </div>
@@ -50,7 +50,7 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`px-4 py-2 font-medium rounded-lg transition-all duration-300 relative group ${
+                  className={`px-4 py-2 font-medium rounded-lg transition-all duration-300 relative group cursor-pointer ${
                     isActive
                       ? 'text-background bg-linear-to-r from-accent to-secondary shadow-lg shadow-accent/50'
                       : 'text-foreground hover:bg-accent hover:text-background'
@@ -70,7 +70,7 @@ export default function Navbar() {
             {/* CTA Button */}
             <a
               href="#contact"
-              className="px-6 py-2.5 bg-linear-to-r from-accent to-secondary text-background font-medium rounded-lg hover:shadow-lg hover:shadow-accent/50 transform hover:scale-105 transition-all duration-300"
+              className="px-6 py-2.5 bg-linear-to-r from-accent to-secondary text-background font-medium rounded-lg hover:shadow-lg hover:shadow-accent/50 transform hover:scale-105 transition-all duration-300 cursor-pointer"
             >
               Get In Touch
             </a>
@@ -78,7 +78,7 @@ export default function Navbar() {
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-muted hover:bg-muted/80 text-foreground transition-all duration-300 flex items-center justify-center"
+              className="p-2 rounded-lg bg-muted hover:bg-muted/80 text-foreground transition-all duration-300 flex items-center justify-center cursor-pointer"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -93,7 +93,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-muted hover:bg-muted/80 text-foreground transition-all duration-300"
+              className="p-2 rounded-lg bg-muted hover:bg-muted/80 text-foreground transition-all duration-300 cursor-pointer"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -104,7 +104,7 @@ export default function Navbar() {
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg hover:bg-muted transition-colors"
+              className="p-2 rounded-lg hover:bg-muted transition-colors cursor-pointer"
             >
               {isOpen ? (
                 <X size={24} className="text-accent" />
@@ -124,7 +124,7 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`block px-4 py-2 font-medium rounded-lg transition-all duration-300 ${
+                  className={`block px-4 py-2 font-medium rounded-lg transition-all duration-300 cursor-pointer ${
                     isActive
                       ? 'text-background bg-linear-to-r from-accent to-secondary shadow-lg shadow-accent/50'
                       : 'text-foreground hover:bg-accent hover:text-background'
@@ -137,7 +137,7 @@ export default function Navbar() {
             })}
             <a
               href="#contact"
-              className="block px-4 py-2 bg-linear-to-r from-accent to-secondary text-background font-medium rounded-lg hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 text-center"
+              className="block px-4 py-2 bg-linear-to-r from-accent to-secondary text-background font-medium rounded-lg hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 text-center cursor-pointer"
               onClick={() => setIsOpen(false)}
             >
               Get In Touch

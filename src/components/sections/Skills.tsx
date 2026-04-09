@@ -99,7 +99,7 @@ const Skills = () => {
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 ${
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 cursor-pointer ${
                 activeCategory === category.id
                   ? "bg-linear-to-r from-accent to-secondary text-white shadow-lg shadow-accent/50"
                   : "bg-background/40 border border-white/10 text-foreground hover:border-accent/30 hover:bg-background/60"
@@ -119,7 +119,7 @@ const Skills = () => {
             <button
               onClick={() => scroll("left")}
               disabled={!canScrollLeft}
-              className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden relative z-20 transition-all duration-500 transform hover:scale-110 disabled:opacity-40 disabled:cursor-not-allowed group/arrow"
+              className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden relative z-20 transition-all duration-500 transform hover:scale-110 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group/arrow"
               aria-label="Scroll left"
             >
               {/* Arrow Button Background - Dark Mode */}
@@ -170,7 +170,7 @@ const Skills = () => {
             <button
               onClick={() => scroll("right")}
               disabled={!canScrollRight}
-              className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden relative z-20 transition-all duration-500 transform hover:scale-110 disabled:opacity-40 disabled:cursor-not-allowed group/arrow"
+              className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden relative z-20 transition-all duration-500 transform hover:scale-110 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group/arrow"
               aria-label="Scroll right"
             >
               {/* Arrow Button Background - Dark Mode */}
