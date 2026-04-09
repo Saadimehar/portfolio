@@ -21,7 +21,7 @@ const Experience = () => {
       : experiences.filter((exp) => exp.type === activeType);
 
   return (
-    <section className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
+    <section className="min-h-screen py-16 sm:py-20 px-3 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 -left-40 w-80 h-80 bg-linear-to-br from-accent/10 to-transparent rounded-full blur-3xl animate-pulse" />
@@ -30,56 +30,56 @@ const Experience = () => {
 
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Section Title */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
             <span className="bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
               Experience & Education
             </span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed text-justify">
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
             A comprehensive overview of my professional journey and educational background. Each role has shaped my skills and contributed to my growth as a developer.
           </p>
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 animate-fade-in" style={{ animationDelay: "0.1s" }}>
           {experienceTypes.map((type) => (
             <button
               key={type.id}
               onClick={() => setActiveType(type.id)}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+              className={`px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex items-center gap-2 cursor-pointer whitespace-nowrap ${
                 activeType === type.id
                   ? "bg-linear-to-r from-accent to-secondary text-white shadow-lg shadow-accent/50"
                   : "bg-background/40 border border-white/10 text-foreground hover:border-accent/30 hover:bg-background/60"
               }`}
             >
               <span>{type.icon}</span>
-              {type.label}
+              <span className="hidden xs:inline">{type.label}</span>
             </button>
           ))}
         </div>
 
         {/* Timeline */}
         <div className="relative animate-fade-in" style={{ animationDelay: "0.2s" }}>
-          {/* Timeline line */}
-          <div className="absolute left-1/2 -translate-x-1/2 w-1 h-full bg-linear-to-b from-accent via-secondary to-accent/30 rounded-full" />
+          {/* Timeline line - visible on lg screens only */}
+          <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 w-1 h-full bg-linear-to-b from-accent via-secondary to-accent/30 rounded-full" />
 
           {/* Experience Cards */}
-          <div className="space-y-12">
+          <div className="space-y-8 sm:space-y-12">
             {filteredExperiences.map((experience, index) => (
               <div
                 key={experience.id}
                 className="animate-fade-in"
                 style={{ animationDelay: `${0.3 + index * 0.1}s` }}
               >
-                <div className={`flex items-center ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}>
-                  {/* Timeline dot */}
-                  <div className="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-linear-to-r from-accent to-secondary border-4 border-background shadow-lg shadow-accent/50 z-20" />
+                <div className="flex items-start lg:items-center lg:gap-0 gap-4">
+                  {/* Timeline dot - visible on lg screens only */}
+                  <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-linear-to-r from-accent to-secondary border-4 border-background shadow-lg shadow-accent/50 z-20 -ml-2.5" />
 
                   {/* Card Container */}
-                  <div className={`w-1/2 ${index % 2 === 0 ? "pr-12 text-right" : "pl-12 text-left"}`}>
+                  <div className={`w-full lg:w-1/2 ${index % 2 === 0 ? "lg:pr-12" : "lg:pl-12"}`}>
                     {/* Card */}
-                    <div className="group relative p-6 rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/20">
+                    <div className="group relative p-4 sm:p-6 rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/20">
                       {/* Gradient overlay on hover */}
                       <div className="absolute inset-0 bg-linear-to-br from-accent/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
 
@@ -87,20 +87,20 @@ const Experience = () => {
                       <div className="relative z-10">
                         {/* Role & Company */}
                         <div className="mb-3">
-                          <h3 className="text-2xl font-bold bg-linear-to-r from-accent to-secondary bg-clip-text text-transparent group-hover:from-accent group-hover:to-purple-400 transition-all duration-300">
+                          <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-linear-to-r from-accent to-secondary bg-clip-text text-transparent group-hover:from-accent group-hover:to-purple-400 transition-all duration-300">
                             {experience.role}
                           </h3>
-                          <p className="text-lg font-semibold text-foreground/80 mt-1">
+                          <p className="text-base sm:text-lg font-semibold text-foreground/80 mt-1">
                             {experience.company}
                           </p>
-                          <p className="text-sm text-muted-foreground flex items-center gap-1 justify-start">
+                          <p className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1 justify-start mt-1">
                             <span>📍</span>
                             {experience.location}
                           </p>
                         </div>
 
                         {/* Date Range */}
-                        <div className="flex items-center gap-2 mb-4 text-sm font-medium text-accent/80">
+                        <div className="flex items-center gap-2 mb-4 text-xs sm:text-sm font-medium text-accent/80">
                           <span>📅</span>
                           <span>
                             {experience.startDate} - {experience.endDate}
@@ -119,10 +119,10 @@ const Experience = () => {
                           {experience.description.map((point, idx) => (
                             <li
                               key={idx}
-                              className="text-sm text-muted-foreground group-hover:text-foreground/90 transition-colors duration-300 flex items-start gap-2"
+                              className="text-xs sm:text-sm text-muted-foreground group-hover:text-foreground/90 transition-colors duration-300 flex items-start gap-2"
                             >
                               <span className="text-accent mt-0.5 flex-shrink-0">•</span>
-                              <span className={index % 2 === 0 ? "text-right" : "text-left"}>{point}</span>
+                              <span className="text-left">{point}</span>
                             </li>
                           ))}
                         </ul>

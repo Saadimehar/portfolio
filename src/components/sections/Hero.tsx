@@ -52,33 +52,33 @@ const socialLinks = [
 
 export const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 lg:py-0 relative overflow-hidden bg-background transition-colors duration-300">
+    <section className="min-h-screen flex items-center justify-center px-3 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-0 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-linear-to-br from-accent/5 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
           {/* Left Content */}
-          <div className="flex flex-col gap-8 animate-fade-in">
+          <div className="flex flex-col gap-6 sm:gap-8 animate-fade-in">
             {/* Name */}
-            <div className="text-center lg:text-left">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-4">
-                <span className="block dark:text-white light:text-black text-foreground text-4xl sm:text-5xl lg:text-6xl font-semibold mb-2 leading-relaxed">
+            <div className="text-center lg:text-left space-y-2">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-2 sm:mb-4">
+                <span className="block dark:text-white text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-1 sm:mb-2 leading-tight">
                   Hey, I'm
                 </span>
-                <span className="block bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent text-6xl sm:text-7xl lg:text-5xl font-bold leading-relaxed">
+                <span className="block bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-bold leading-tight">
                   Muhammad Saad
                 </span>
               </h1>
             </div>
 
             {/* Description */}
-            <p className="text-base sm:text-lg text-muted-foreground max-w-lg leading-relaxed text-justify">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed line-clamp-4">
               {siteConfig.description}
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
+            <div className="flex flex-col xs:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start">
               <Link href="#contact">
                 <Button variant="primary" size="lg">
                   <span>💬</span>
@@ -94,8 +94,8 @@ export const Hero = () => {
             </div>
 
             {/* Social Media Icons */}
-            <div className="flex items-center gap-4 pt-4 justify-center lg:justify-start">
-              <div className="flex gap-4 ml-8 flex-wrap">
+            <div className="flex items-center gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start flex-wrap">
+              <div className="flex gap-2 sm:gap-3 flex-wrap justify-center lg:justify-start">
                 {socialLinks.map((social) => (
                   social.url && (
                     <a
