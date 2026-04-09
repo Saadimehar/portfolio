@@ -251,7 +251,7 @@ const SkillBox: React.FC<SkillBoxProps> = ({ skill }) => {
             <span className="text-5xl">{iconMap[skill.icon] || "💻"}</span>
           </div>
           {/* Name */}
-          <span className={`text-sm font-bold text-center light:text-black dark:text-white transition-all duration-300 line-clamp-2 px-2 ${
+          <span className={`text-sm font-bold text-center text-foreground transition-all duration-300 line-clamp-2 px-2 ${
             isHovered ? "text-accent" : ""
           }`}>
             {skill.name}

@@ -53,7 +53,7 @@ const Projects = () => {
               onClick={() => setActiveCategory(category.id)}
               className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 cursor-pointer ${
                 activeCategory === category.id
-                  ? "bg-linear-to-r from-accent to-secondary text-white shadow-lg shadow-accent/50"
+                  ? "bg-linear-to-r from-accent to-secondary text-background shadow-lg shadow-accent/50"
                   : "bg-background/40 border border-white/10 text-foreground hover:border-accent/30 hover:bg-background/60"
               }`}
             >
@@ -96,7 +96,7 @@ const Projects = () => {
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-6 py-3 bg-linear-to-br from-accent to-purple-600 text-white font-bold rounded-xl flex items-center gap-2 hover:shadow-2xl hover:shadow-accent/50 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm cursor-pointer"
+                        className="px-6 py-3 bg-linear-to-br from-accent to-purple-600 text-background font-bold rounded-xl flex items-center gap-2 hover:shadow-2xl hover:shadow-accent/50 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm cursor-pointer"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -111,7 +111,7 @@ const Projects = () => {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-6 py-3 bg-background/80 border-2 border-white text-white font-bold rounded-xl flex items-center gap-2 hover:border-accent hover:bg-accent/20 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm cursor-pointer"
+                        className="px-6 py-3 bg-background/80 border-2 border-foreground dark:border-white text-foreground dark:text-white font-bold rounded-xl flex items-center gap-2 hover:border-accent hover:bg-accent/20 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm cursor-pointer"
                       >
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                           <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.544 2.914 1.184.092-.923.35-1.544.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.917.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.194 22 16.44 22 12.017 22 6.484 17.522 2 12 2z" clipRule="evenodd" />

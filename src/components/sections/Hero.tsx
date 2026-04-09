@@ -103,7 +103,7 @@ export const Hero = () => {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`${social.bgColor} ${social.hoverColor} text-white w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg shadow-md`}
+                      className={`${social.bgColor} ${social.hoverColor} text-background w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg shadow-md`}
                       aria-label={social.name}
                       title={social.name}
                     >
