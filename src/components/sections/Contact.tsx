@@ -39,8 +39,8 @@ const Contact = () => {
     {
       id: 2,
       icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 00.948.684l1.498 4.493a1 1 0 00.502 1.21l2.257 1.13a11.049 11.049 0 005.997 5.997l1.13 2.257a1 1 0 001.21.502l4.493-1.498a1 1 0 00.684-.949V5a2 2 0 00-2-2h-2.28a1 1 0 00-.948.684m0 0L9 7m10 4l-4 2m4 0l2 4m-2-4l-4-2m4 0l4-2" />
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17 2H7c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H7V4h10v16zm-5.5-9c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z" />
         </svg>
       ),
       label: "Phone",

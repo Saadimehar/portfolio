@@ -10,7 +10,7 @@ export const experiences: Experience[] = [
     endDate: "Aug 2025",
     description: [
       "Worked as a Backend Developer Intern at CoftTech",
-      "Contributed to the development and maintenance of server-side applications",
+      "Contributed to the development of server-side applications",
       "Worked on APIs and database integrations",
     ],
     tags: ["Backend", "APIs", "Databases"],
@@ -24,7 +24,7 @@ export const experiences: Experience[] = [
     startDate: "Oct 2024",
     endDate: "Apr 2025",
     description: [
-      "Completed a 6-month frontend internship building responsive UIs",
+      "Completed 6-month frontend internship building responsive UIs",
       "Built components with HTML, CSS, JavaScript, and React.js",
       "Focused on reusable components and user experience",
     ],
