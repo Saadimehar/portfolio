@@ -4,7 +4,7 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
+  title: "Saad Dev",
   description: "Professional portfolio website",
 };
 
