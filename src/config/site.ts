@@ -12,5 +12,5 @@ export const siteConfig = {
     instagram: "https://instagram.com/isaadimehar",
     figma: "https://figma.com/@saadimehar",
   },
-  resume: "public/resume.pdf",
+  resume: "/Muhammad_Saad_CV.pdf",
 };

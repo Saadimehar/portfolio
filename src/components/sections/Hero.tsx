@@ -87,7 +87,7 @@ export const Hero = () => {
                   Let's Talk
                 </Button>
               </Link>
-              <a href={siteConfig.resume} download="Muhammad_Saad_Resume.pdf">
+              <a href={siteConfig.resume} download="Muhammad_Saad_CV.pdf">
                 <Button variant="outline" size="lg">
                   <span>📥</span>
                   Download Resume

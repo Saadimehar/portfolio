@@ -243,12 +243,12 @@ const About = () => {
             {/* Row 1: 2023 Button + Started Journey Box */}
             <div className="flex flex-col md:flex-row gap-6 items-center animate-fade-in" style={{ animationDelay: "0.3s" }}>
               {/* Year Button */}
-              <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-blue-500 to-cyan-500 text-white font-bold text-lg hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 flex-shrink-0 w-full md:w-auto">
+              <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-blue-500 to-cyan-500 text-white font-bold text-lg hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 shrink-0 w-full md:w-auto">
                 2023
               </button>
               
               {/* Content Box */}
-              <div className="relative group overflow-hidden rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 p-6 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 flex-grow w-full">
+              <div className="relative group overflow-hidden rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 p-6 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 grow w-full">
                 <div className="absolute inset-0 bg-linear-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10">
                   <h4 className="text-xl font-bold dark:text-white light:text-black mb-2">Started Journey</h4>
@@ -262,12 +262,12 @@ const About = () => {
             {/* Row 2: First Major Project Box + 2024 Button */}
             <div className="flex flex-col md:flex-row-reverse gap-6 items-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
               {/* Year Button */}
-              <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-purple-500 to-pink-600 text-white font-bold text-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105 flex-shrink-0 w-full md:w-auto">
+              <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-purple-500 to-pink-600 text-white font-bold text-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105 shrink-0 w-full md:w-auto">
                 2024
               </button>
               
               {/* Content Box */}
-              <div className="relative group overflow-hidden rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 p-6 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 flex-grow w-full">
+              <div className="relative group overflow-hidden rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 p-6 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 grow w-full">
                 <div className="absolute inset-0 bg-linear-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10">
                   <h4 className="text-xl font-bold dark:text-white light:text-black mb-2">First Major Project</h4>
@@ -281,12 +281,12 @@ const About = () => {
             {/* Row 3: 2025 Button + Internship & Projects Box */}
             <div className="flex flex-col md:flex-row gap-6 items-center animate-fade-in" style={{ animationDelay: "0.5s" }}>
               {/* Year Button */}
-              <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-indigo-500 to-purple-600 text-white font-bold text-lg hover:shadow-lg hover:shadow-indigo-500/50 transition-all duration-300 transform hover:scale-105 flex-shrink-0 w-full md:w-auto">
+              <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-indigo-500 to-purple-600 text-white font-bold text-lg hover:shadow-lg hover:shadow-indigo-500/50 transition-all duration-300 transform hover:scale-105 shrink-0 w-full md:w-auto">
                 2025
               </button>
               
               {/* Content Box */}
-              <div className="relative group overflow-hidden rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 p-6 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/20 flex-grow w-full">
+              <div className="relative group overflow-hidden rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 p-6 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/20 grow w-full">
                 <div className="absolute inset-0 bg-linear-to-br from-indigo-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10">
                   <h4 className="text-xl font-bold dark:text-white light:text-black mb-2">Internship & Working on Projects</h4>
@@ -300,12 +300,12 @@ const About = () => {
             {/* Row 4: Current Journey Box + 2026 Button */}
             <div className="flex flex-col md:flex-row-reverse gap-6 items-center animate-fade-in" style={{ animationDelay: "0.6s" }}>
               {/* Year Button - Active/Pulsing */}
-              <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-green-500 to-emerald-600 text-white font-bold text-lg hover:shadow-lg hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-105 flex-shrink-0 w-full md:w-auto animate-pulse">
+              <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-green-500 to-emerald-600 text-white font-bold text-lg hover:shadow-lg hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-105 shrink-0 w-full md:w-auto animate-pulse">
                 2026
               </button>
               
               {/* Content Box */}
-              <div className="relative group overflow-hidden rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 p-6 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20 flex-grow w-full">
+              <div className="relative group overflow-hidden rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 p-6 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20 grow w-full">
                 <div className="absolute inset-0 bg-linear-to-br from-green-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10">
                   <h4 className="text-xl font-bold dark:text-white light:text-black mb-2">Current Journey</h4>
