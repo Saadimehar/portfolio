@@ -44,11 +44,7 @@ const socialLinks = [
   {
     name: "Figma",
     url: siteConfig.social.figma,
-    icon: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M6 2a4 4 0 0 0-4 4v5a4 4 0 0 0 4 4h4V2H6zm6 0v9h4V6a4 4 0 0 0-4-4zm0 11v9h4a4 4 0 0 0 4-4v-5h-8zm-6 0a4 4 0 0 0-4 4v5a4 4 0 0 0 4 4h4v-9H6z" />
-      </svg>
-    ),
+    icon: <span className="text-lg font-bold">F</span>,
     bgColor: "bg-gradient-to-br from-purple-500 to-purple-700",
     hoverColor: "hover:from-purple-600 hover:to-purple-800",
   },
