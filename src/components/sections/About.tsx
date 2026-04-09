@@ -270,9 +270,9 @@ const About = () => {
               <div className="relative group overflow-hidden rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 p-6 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 grow w-full">
                 <div className="absolute inset-0 bg-linear-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10">
-                  <h4 className="text-xl font-bold dark:text-white light:text-black mb-2">First Major Project</h4>
+                  <h4 className="text-xl font-bold dark:text-white light:text-black mb-2">First Project</h4>
                   <p className="text-muted-foreground leading-relaxed text-justify group-hover:text-foreground/90 transition-colors duration-300 text-sm">
-                    Completed my first major full-stack project, combining frontend and backend skills to create an application that solved real-world problems.
+                    Completed my first full-stack project, combining frontend and backend skills to create an application that solved real-world problems.
                   </p>
                 </div>
               </div>

@@ -45,7 +45,9 @@ const socialLinks = [
     name: "Figma",
     url: siteConfig.social.figma,
     icon: (
-      <span className="text-lg font-bold">F</span>
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 0c-4.4 0-8 3.6-8 8v8c0 4.4 3.6 8 8 8h8c4.4 0 8-3.6 8-8v-8c0-4.4-3.6-8-8-8h-8zm0 2h4v6h-4v-6zm6 0c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm-6 8h4c2.2 0 4 1.8 4 4s-1.8 4-4 4h-4v-8zm0 0" />
+      </svg>
     ),
     bgColor: "bg-gradient-to-br from-purple-500 to-purple-700",
     hoverColor: "hover:from-purple-600 hover:to-purple-800",
@@ -97,9 +99,6 @@ export const Hero = () => {
 
             {/* Social Media Icons */}
             <div className="flex items-center gap-4 pt-4 justify-center lg:justify-start">
-              <span className="text-sm text-muted-foreground font-medium">
-                Follow me:
-              </span>
               <div className="flex gap-3 flex-wrap">
                 {socialLinks.map((social) => (
                   social.url && (
