@@ -63,7 +63,7 @@ export const Hero = () => {
             {/* Name */}
             <div className="text-center lg:text-left">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-4">
-                <span className="block dark:text-white text-foreground text-4xl sm:text-5xl lg:text-6xl font-semibold mb-2 leading-relaxed">
+                <span className="block dark:text-white light:text-black text-foreground text-4xl sm:text-5xl lg:text-6xl font-semibold mb-2 leading-relaxed">
                   Hey, I'm
                 </span>
                 <span className="block bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent text-6xl sm:text-7xl lg:text-5xl font-bold leading-relaxed">
