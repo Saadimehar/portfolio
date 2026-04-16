@@ -1,103 +1,230 @@
 # Muhammad Saad - Professional Portfolio
 
-A modern, responsive portfolio website built with Next.js, React, TypeScript, and Tailwind CSS. Showcasing projects, skills, experience, and facilitating client contact through an integrated email system.
+A modern, responsive portfolio website built with Next.js 16, React 19, TypeScript, and Tailwind CSS. Features dark/light theme toggle, project showcase, skills display, work experience, and a fully functional contact form with dual email delivery methods (EmailJS + SMTP API fallback).
 
-## 🌐 Live Demo
+**Live Site:** https://portfolio-saadimehar.vercel.app | **GitHub:** https://github.com/Saadimehar/portfolio
 
-**Website:** https://portfolio-saad.vercel.app  
-**GitHub Repository:** https://github.com/Saadimehar/portfolio
+---
 
-## ✨ Features
+## 🎯 Key Features
 
-### 🎨 Modern Design
-- **Dark/Light Mode Theme** - Seamless theme switching with persistent storage
-- **Responsive Design** - Perfectly optimized for desktop, tablet, and mobile devices
-- **Smooth Animations** - Fade-in effects, scroll animations, and interactive elements
-- **Professional UI** - Clean, modern interface with gradient accents
+### ✨ Core Features
+- **🌓 Dark/Light Mode** - Seamless theme switching with persistent storage
+- **📱 Fully Responsive** - Optimized for mobile, tablet, and desktop
+- **✉️ Dual Email Delivery** - EmailJS (primary) + SMTP API fallback
+- **🎨 Modern Design** - Clean UI with smooth animations and gradients
+- **⚡ Fast Performance** - Next.js 16 with TypeScript
 
-### 📱 Sections
-1. **Hero Section** - Eye-catching introduction with CTA buttons and social links
-2. **About** - Personal introduction and professional background
-3. **Projects** - Showcase of completed work with live links and GitHub repositories
-4. **Skills** - Comprehensive skill display with categories (Languages, Frontend, Backend, Design, Tools)
-5. **Experience** - Detailed work experience and educational background
-6. **Contact** - Professional contact form and multiple contact methods
-7. **Footer** - Quick links and social media integration
+### 📋 Portfolio Sections
+1. **Hero** - Eye-catching intro with CTA buttons and social links
+2. **About** - Professional background and introduction
+3. **Projects** - Portfolio with live demos and GitHub links
+4. **Skills** - Categorized skills with icons
+5. **Experience** - Work experience and education timeline
+6. **Contact** - Email form with validation
+7. **Footer** - Quick navigation and social links
 
-### 📧 Email Integration
-- **EmailJS Integration** - Serverless email delivery for contact form submissions
-- **Email Notifications** - Automatic email alerts when visitors submit inquiries
-- **Direct Response** - Reply to inquiries directly from your email
+### 📧 Contact Form
+- **Primary:** EmailJS serverless email delivery
+- **Fallback:** SMTP API route via Nodemailer for reliability
+- Real-time validation and error handling
+- Auto-confirmation emails to visitors
+- Direct email to saad49861@gmail.com
 
-### 🔧 Technologies Used
-- **Framework:** Next.js 16.2.2
-- **React:** 19.2.4
-- **Type Safety:** TypeScript
-- **Styling:** Tailwind CSS 4.x
-- **Email Service:** EmailJS
-- **Version Control:** Git & GitHub
-- **Deployment:** Vercel
+---
 
-## 📋 Section Details
+## 🛠 Tech Stack
 
-### **Hero Section**
-- Animated name and title
-- Call-to-action buttons (Let's Talk, Download Resume)
-- Social media links (GitHub, LinkedIn, Instagram, Figma)
-- Responsive layout for all screen sizes
+| Category | Technologies |
+|----------|---|
+| **Frontend** | Next.js 16.2.2, React 19, TypeScript, Tailwind CSS 4 |
+| **Email** | EmailJS (client-side), Nodemailer (server-side) |
+| **Styling** | Tailwind CSS, PostCSS, clsx, tailwind-merge |
+| **Animation** | Framer Motion |
+| **Icons** | Lucide React |
+| **Theme** | next-themes |
+| **Tools** | ESLint, Prettier, Git |
+| **Deployment** | Vercel |
 
-### **About Section**
-- Personal introduction
-- Professional highlight
-- Key skills preview
+---
 
-### **Projects**
-- Project cards with images
-- Category filtering (UI/UX Design, Full Stack, Frontend, Other)
-- Live demo and GitHub code links
-- Technology tags and descriptions
-
-### **Skills**
-- Categorized skills display
-- Horizontal scrolling skill cards
-- Icons for visual representation
-- Categories: Languages, Frontend, Backend, Design, Tools, Additional
-
-### **Experience**
-- Work experience timeline
-- Education background
-- Detailed descriptions and responsibilities
-- Date ranges and company information
-
-### **Contact**
-- Contact form with EmailJS integration
-- Email, phone, location, and availability cards
-- Real-time form validation
-- Success/error feedback messages
-
-## 🚀 Quick Start
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ installed
-- npm or yarn package manager
-- Git for version control
+- Node.js 18+ 
+- npm/yarn
+- Git
 
 ### Installation
 
-1. **Clone the repository:**
 ```bash
+# Clone repository
 git clone https://github.com/Saadimehar/portfolio.git
 cd portfolio
-```
 
-2. **Install dependencies:**
-```bash
+# Install dependencies
 npm install
+
+# Create environment file
+cp .env.example .env.local
 ```
 
-3. **Setup EmailJS (for contact form):**
-   - Visit https://www.emailjs.com and create an account
-   - Get your Public Key, Service ID, and Template ID
+### Environment Setup
+
+Edit `.env.local` with your EmailJS credentials from https://www.emailjs.com:
+
+```env
+# EmailJS Configuration (from https://www.emailjs.com)
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+
+# Optional: SMTP Fallback (for automatic failover)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your_email@gmail.com
+SMTP_PASSWORD=your_app_password
+SMTP_FROM_EMAIL=your_email@gmail.com
+SMTP_FROM_NAME=Your Name
+```
+
+### Email Setup (EmailJS)
+
+1. **Create Account** - Sign up at https://www.emailjs.com
+2. **Add Email Service** - Connect Gmail or another email provider
+3. **Get Credentials:**
+   - Copy **Public Key** from Account → API Keys
+   - Note **Service ID** from Email Services
+   - Create Email Template with name like `contact_template`
+   - Copy **Template ID**
+4. **Add to .env.local** - Paste the three IDs above
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+Open http://localhost:3000 in browser. Form will send emails to saad49861@gmail.com.
+
+### Build for Production
+
+```bash
+npm run build
+npm start
+```
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+├── app/
+│   ├── api/contact/route.ts     # Email API endpoint (SMTP fallback)
+│   ├── layout.tsx                # Root layout with theme provider
+│   ├── globals.css               # Global styles
+│   └── page.tsx                  # Home page
+├── components/
+│   ├── Navbar.tsx                # Navigation with theme toggle
+│   ├── layout/                   # Layout components
+│   └── sections/                 # Page sections (Hero, About, etc.)
+│       ├── Hero.tsx
+│       ├── About.tsx
+│       ├── Projects.tsx
+│       ├── Skills.tsx
+│       ├── Experience.tsx
+│       ├── Contact.tsx
+│       └── Footer.tsx
+├── ui/                           # Reusable UI components
+├── context/                      # ThemeContext for dark/light mode
+├── hooks/                        # Custom hooks (useScrollspy, useTheme)
+├── config/                       # Site configuration
+├── data/                         # Static data (projects, skills, experience)
+├── types/                        # TypeScript interfaces
+└── lib/                          # Utility functions
+```
+
+---
+
+## ✅ Recent Improvements
+
+### 1. Hero Section - Responsive Buttons
+Fixed button overlap on mobile by implementing responsive flex layout:
+- Stack vertically on mobile, horizontally on sm+ screens
+- Full-width buttons on mobile for accessibility
+
+### 2. Skills Section - Right Scroll Arrow
+Fixed arrow visibility by adding proper container measurement:
+- Arrow shows correctly on initial page load
+- Updates on window resize and category changes
+- Seamless horizontal scrolling
+
+### 3. Contact Form - Email Delivery
+Implemented dual email system with automatic failover:
+- **Primary:** EmailJS (fast, client-side)
+- **Fallback:** SMTP API route (reliable server-side)
+- Sends confirmation emails to visitor
+- Form validation and error handling
+
+---
+
+## 🔗 Important Links
+
+- **Portfolio:** https://portfolio-saadimehar.vercel.app
+- **GitHub:** https://github.com/Saadimehar/portfolio
+- **Email:** saad49861@gmail.com
+- **Phone:** +92 304 9194954
+- **Location:** Wah Cantt, Pakistan
+
+### Social Links
+- [LinkedIn](https://www.linkedin.com/in/muhammad-saad-a58a891a2/)
+- [GitHub](https://github.com/Saadimehar)
+- [Instagram](https://instagram.com/isaadimehar)
+- [Figma](https://figma.com/@saadimehar)
+
+---
+
+## 📝 Available Scripts
+
+```bash
+npm run dev      # Start development server (port 3000)
+npm run build    # Build for production
+npm start        # Start production server
+npm run lint     # Run ESLint
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### Emails Not Sending?
+1. Verify EmailJS Service is **Connected** (not Failed)
+2. Check `.env.local` has correct Public Key, Service ID, Template ID
+3. Ensure email template exists in EmailJS dashboard
+4. Check browser console for error messages
+
+### Theme Not Persisting?
+- Clear browser cache and localStorage
+- Restart dev server
+
+### Build Errors?
+```bash
+# Clean install
+rm -rf node_modules package-lock.json
+npm install
+npm run build
+```
+
+---
+
+## 📄 License
+
+This portfolio is open source and available on GitHub.
+
+---
+
+**Last Updated:** April 2026 | **Status:** ✅ Production Ready
    - Create a `.env.local` file in the root directory:
 ```
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
