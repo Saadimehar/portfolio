@@ -91,39 +91,70 @@ const Contact = () => {
     setSubmitStatus("idle");
 
     try {
-      // Validate EmailJS configuration
+      // First, try EmailJS
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
 
-      if (!publicKey || !serviceId || !templateId) {
-        console.error("Missing EmailJS credentials. Please configure .env.local file.");
-        console.error("Read EMAILJS_SETUP.md for setup instructions.");
-        setSubmitStatus("error");
-        setTimeout(() => {
-          setSubmitStatus("idle");
-        }, 5000);
-        setIsSubmitting(false);
-        return;
+      if (publicKey && serviceId && templateId) {
+        try {
+          // Try EmailJS first
+          const templateParams = {
+            from_name: formData.name,
+            from_email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            to_email: siteConfig.email,
+          };
+
+          const response = await emailjs.send(
+            serviceId,
+            templateId,
+            templateParams,
+            publicKey
+          );
+
+          console.log("Email sent via EmailJS!", response);
+          setSubmitStatus("success");
+          setFormData({
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+          });
+
+          setTimeout(() => {
+            setSubmitStatus("idle");
+          }, 4000);
+          setIsSubmitting(false);
+          return;
+        } catch (emailJsError) {
+          console.warn("EmailJS failed, trying SMTP API route...", emailJsError);
+          // Fall through to SMTP API route
+        }
       }
 
-      // Send email using EmailJS
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: siteConfig.email,
-      };
+      // Fallback: Use SMTP API route
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
 
-      const response = await emailjs.send(
-        serviceId,
-        templateId,
-        templateParams,
-        publicKey
-      );
+      const data = await response.json();
 
-      console.log("Email sent successfully!", response);
+      if (!response.ok) {
+        throw new Error(data.details || data.error || "Failed to send email");
+      }
+
+      console.log("Email sent via SMTP API!", data);
       setSubmitStatus("success");
       setFormData({
         name: "",
@@ -132,7 +163,6 @@ const Contact = () => {
         message: "",
       });
 
-      // Reset success message after 4 seconds
       setTimeout(() => {
         setSubmitStatus("idle");
       }, 4000);
@@ -246,7 +276,7 @@ const Contact = () => {
                 {submitStatus === "error" && (
                   <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 animate-slide-up">
                     <p className="text-red-600 dark:text-red-400 font-medium text-sm">
-                      ✗ Unable to send message. The contact form hasn't been configured yet. <br />
+                      ✗ Unable to send message at the moment. <br />
                       <span className="text-xs opacity-90">Please check the browser console for details or contact at {siteConfig.email}</span>
                     </p>
                   </div>

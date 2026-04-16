@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { skills } from "@/data/skills";
 
 type SkillCategory = "all" | "frontend" | "backend" | "design" | "tools" | "languages" | "additional";
@@ -46,6 +46,7 @@ const skillCategories: { id: SkillCategory; label: string; icon: string }[] = [
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState<SkillCategory>("all");
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [canScrollRight, setCanScrollRight] = useState(true);
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
 
   // Filter skills based on active category
@@ -53,6 +54,29 @@ const Skills = () => {
     activeCategory === "all"
       ? skills
       : skills.filter((skill) => skill.category === activeCategory);
+
+  // Update scroll state after DOM is ready
+  useEffect(() => {
+    const updateScrollState = () => {
+      const container = scrollContainerRef.current;
+      if (!container) return;
+      
+      const hasHorizontalScroll = container.scrollWidth > container.clientWidth;
+      setCanScrollRight(hasHorizontalScroll);
+    };
+
+    // Run immediately and after a small delay for the DOM to fully render
+    updateScrollState();
+    const timer = setTimeout(updateScrollState, 100);
+    
+    // Also run on window resize in case the layout changes
+    window.addEventListener("resize", updateScrollState);
+    
+    return () => {
+      window.removeEventListener("resize", updateScrollState);
+      clearTimeout(timer);
+    };
+  }, [filteredSkills]);
 
   const scroll = (direction: "left" | "right") => {
     const container = scrollContainerRef.current;
@@ -68,9 +92,15 @@ const Skills = () => {
   };
 
   const canScrollLeft = scrollPosition > 0;
-  const canScrollRight = scrollContainerRef.current 
-    ? scrollPosition < scrollContainerRef.current.scrollWidth - scrollContainerRef.current.clientWidth
-    : false;
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const newPosition = container.scrollLeft;
+    setScrollPosition(newPosition);
+    
+    // Update canScrollRight when scrolling
+    const hasMoreToScroll = newPosition < container.scrollWidth - container.clientWidth;
+    setCanScrollRight(hasMoreToScroll);
+  };
 
   return (
     <section className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
@@ -141,7 +171,7 @@ const Skills = () => {
             <div 
               ref={scrollContainerRef}
               className="overflow-x-auto scrollbar-hide scroll-smooth flex-1 min-w-0"
-              onScroll={(e) => setScrollPosition(e.currentTarget.scrollLeft)}
+              onScroll={handleScroll}
             >
               {/* Gradient overlays on sides */}
               <div className="hidden" />
