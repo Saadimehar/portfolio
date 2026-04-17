@@ -5,13 +5,10 @@ import emailjs from "@emailjs/browser";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 
-// Initialize EmailJS with Vite-style environment variables
-// Note: Next.js 16+ supports import.meta.env for browser-accessible variables
+// Initialize EmailJS with environment variables
+// Uses NEXT_PUBLIC_ prefix which is the standard Next.js approach for browser-accessible variables
 if (typeof window !== "undefined") {
-  // Try to get public key from import.meta.env first (Vite style), fall back to process.env
-  const publicKey = (import.meta.env?.VITE_EMAILJS_PUBLIC_KEY as string | undefined) || 
-                    (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string | undefined);
-  
+  const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
   console.log("🔧 EmailJS Public Key loaded:", publicKey ? "✓ Present" : "✗ Missing");
   if (publicKey) {
     emailjs.init(publicKey);
@@ -102,14 +99,11 @@ const Contact = () => {
     setSubmitStatus("idle");
 
     try {
-      // Get environment variables using Vite-style import.meta.env
-      // Falls back to Next.js process.env if import.meta.env is not available
-      const serviceId = (import.meta.env?.VITE_EMAILJS_SERVICE_ID as string | undefined) || 
-                        (process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string | undefined);
-      const templateId = (import.meta.env?.VITE_EMAILJS_TEMPLATE_ID as string | undefined) || 
-                         (process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string | undefined);
-      const publicKey = (import.meta.env?.VITE_EMAILJS_PUBLIC_KEY as string | undefined) || 
-                        (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string | undefined);
+      // Get environment variables using Next.js NEXT_PUBLIC_ prefix
+      // This is the standard approach for browser-accessible variables in Next.js
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
       // Debug logs to verify environment variables are loaded
       console.log("📧 EmailJS Configuration Check:");
@@ -119,8 +113,8 @@ const Contact = () => {
 
       if (!serviceId || !templateId || !publicKey) {
         throw new Error(
-          "EmailJS configuration is missing. Please verify that VITE_EMAILJS_PUBLIC_KEY, " +
-          "VITE_EMAILJS_SERVICE_ID, and VITE_EMAILJS_TEMPLATE_ID are set in your environment variables."
+          "EmailJS configuration is missing. Please verify that NEXT_PUBLIC_EMAILJS_PUBLIC_KEY, " +
+          "NEXT_PUBLIC_EMAILJS_SERVICE_ID, and NEXT_PUBLIC_EMAILJS_TEMPLATE_ID are set in your environment variables."
         );
       }
 
@@ -149,7 +143,7 @@ const Contact = () => {
         message: formData.message.substring(0, 50) + "...",
       });
 
-      // Send email using EmailJS sendForm with environment variables
+      // Send email using EmailJS sendForm
       const response = await emailjs.sendForm(
         serviceId,
         templateId,
