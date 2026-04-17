@@ -290,8 +290,11 @@ const Contact = () => {
                 {submitStatus === "error" && (
                   <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 animate-slide-up">
                     <p className="text-red-600 dark:text-red-400 font-medium text-sm">
-                      ✗ Unable to send message at the moment. <br />
-                      <span className="text-xs opacity-90">Please check the browser console for details or contact at {siteConfig.email}</span>
+                      ✗ Unable to send message. <br />
+                      <span className="text-xs opacity-90">
+                        Check browser console (F12) for details. 
+                        See FORMSPREE_SETUP_GUIDE.md in the project root for troubleshooting, or contact {siteConfig.email}
+                      </span>
                     </p>
                   </div>
                 )}
