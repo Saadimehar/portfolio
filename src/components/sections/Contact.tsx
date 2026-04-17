@@ -88,37 +88,37 @@ const Contact = () => {
     setSubmitStatus("idle");
 
     try {
-      // Method 1: Try JSON submission first (more modern approach)
-      const payload = {
+      // Use FormData method - most reliable with Formspree
+      const formDataToSend = new FormData();
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("_subject", `New message from ${formData.name}: ${formData.subject}`);
+      formDataToSend.append("message", formData.message);
+      formDataToSend.append("_replyto", formData.email);
+
+      console.log("🔄 Submitting form to Formspree...");
+      console.log("Endpoint:", FORMSPREE_ENDPOINT);
+      console.log("Form Data:", {
         email: formData.email,
         name: formData.name,
         subject: formData.subject,
         message: formData.message,
-        _subject: `New message from ${formData.name}: ${formData.subject}`,
-        _replyto: formData.email,
-      };
-
-      console.log("🔄 Submitting form to Formspree via JSON...");
-      console.log("Endpoint:", FORMSPREE_ENDPOINT);
-      console.log("Payload:", payload);
+      });
 
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-        body: JSON.stringify(payload),
+        body: formDataToSend,
       });
 
       console.log("Response Status:", response.status);
-      console.log("Response Headers:", response.headers);
+      console.log("Response OK:", response.ok);
       
-      const data = await response.json();
-      console.log("Response Data:", data);
+      const responseData = await response.json();
+      console.log("Response Data:", responseData);
 
-      if (response.ok) {
-        console.log("✅ SUCCESS! Message sent to saad49861@gmail.com via Formspree");
+      if (response.ok && responseData.ok) {
+        console.log("✅ SUCCESS! Message submitted to Formspree");
+        console.log("Your message has been received. You should receive a confirmation email.");
         setSubmitStatus("success");
         
         // Clear form data
@@ -134,54 +134,19 @@ const Contact = () => {
           setSubmitStatus("idle");
         }, 4000);
       } else {
-        // If JSON fails, try FormData method
-        console.warn("JSON submission returned non-OK status, trying FormData method...");
-        
-        const formDataToSend = new FormData();
-        formDataToSend.append("email", formData.email);
-        formDataToSend.append("name", formData.name);
-        formDataToSend.append("subject", formData.subject);
-        formDataToSend.append("message", formData.message);
-        formDataToSend.append("_subject", `New message from ${formData.name}: ${formData.subject}`);
-        formDataToSend.append("_replyto", formData.email);
-
-        const formResponse = await fetch(FORMSPREE_ENDPOINT, {
-          method: "POST",
-          body: formDataToSend,
-        });
-
-        console.log("FormData Response Status:", formResponse.status);
-        const formData2 = await formResponse.json();
-        console.log("FormData Response:", formData2);
-
-        if (formResponse.ok) {
-          console.log("✅ SUCCESS! Message sent via FormData method");
-          setSubmitStatus("success");
-          
-          setFormData({
-            name: "",
-            email: "",
-            subject: "",
-            message: "",
-          });
-
-          setTimeout(() => {
-            setSubmitStatus("idle");
-          }, 4000);
-        } else {
-          throw new Error(`Both submission methods failed. Status: ${formResponse.status}`);
-        }
+        const errorMsg = responseData.error || `Server returned status ${response.status}`;
+        throw new Error(`Submission failed: ${errorMsg}`);
       }
     } catch (error) {
       console.error("❌ Error submitting form:", error);
       const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
       console.error("Error Details:", errorMessage);
       
-      console.warn("\n⚠️ TROUBLESHOOTING TIPS:");
-      console.warn("1. Verify your Formspree form is ACTIVE: https://formspree.io/forms/mgoranwp");
-      console.warn("2. Confirm saad49861@gmail.com is set as the recipient email");
-      console.warn("3. Check for unverified emails in your Formspree account settings");
-      console.warn("4. Ensure the form endpoint is correct: " + FORMSPREE_ENDPOINT);
+      console.warn("\n⚠️ TROUBLESHOOTING - Check these:");
+      console.warn("1. Is your Formspree form ACTIVE? https://formspree.io/f/mgoranwp");
+      console.warn("2. Is saad49861@gmail.com configured as recipient in Formspree settings?");
+      console.warn("3. Have you verified the email address in Formspree (check your email for verification link)?");
+      console.warn("4. Form endpoint: " + FORMSPREE_ENDPOINT);
       
       setSubmitStatus("error");
 
