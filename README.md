@@ -1,8 +1,8 @@
 # Muhammad Saad - Professional Portfolio
 
-A modern, responsive portfolio website built with Next.js 16, React 19, TypeScript, and Tailwind CSS. Features dark/light theme toggle, project showcase, skills display, work experience, and a fully functional contact form with dual email delivery methods (EmailJS + SMTP API fallback).
+A modern, responsive portfolio website built with Next.js 16, React 19, TypeScript, and Tailwind CSS. Features dark/light theme toggle, project showcase, skills display, work experience, and a fully functional contact form with email integration via Formspree.
 
-**Live Site:** https://portfolio-saadimehar.vercel.app | **GitHub:** https://github.com/Saadimehar/portfolio
+**Live Site:** https://saadimehar.vercel.app | **GitHub:** https://github.com/Saadimehar/portfolio
 
 ---
 
@@ -11,7 +11,7 @@ A modern, responsive portfolio website built with Next.js 16, React 19, TypeScri
 ### ✨ Core Features
 - **🌓 Dark/Light Mode** - Seamless theme switching with persistent storage
 - **📱 Fully Responsive** - Optimized for mobile, tablet, and desktop
-- **✉️ Dual Email Delivery** - EmailJS (primary) + SMTP API fallback
+- **✉️ Contact Form** - Integrated with Formspree for email delivery
 - **🎨 Modern Design** - Clean UI with smooth animations and gradients
 - **⚡ Fast Performance** - Next.js 16 with TypeScript
 
@@ -25,10 +25,9 @@ A modern, responsive portfolio website built with Next.js 16, React 19, TypeScri
 7. **Footer** - Quick navigation and social links
 
 ### 📧 Contact Form
-- **Primary:** EmailJS serverless email delivery
-- **Fallback:** SMTP API route via Nodemailer for reliability
+- **Email Service:** Formspree integration
 - Real-time validation and error handling
-- Auto-confirmation emails to visitors
+- Success and error notifications
 - Direct email to saad49861@gmail.com
 
 ---
@@ -38,9 +37,8 @@ A modern, responsive portfolio website built with Next.js 16, React 19, TypeScri
 | Category | Technologies |
 |----------|---|
 | **Frontend** | Next.js 16.2.2, React 19, TypeScript, Tailwind CSS 4 |
-| **Email** | EmailJS (client-side), Nodemailer (server-side) |
+| **Email** | Formspree |
 | **Styling** | Tailwind CSS, PostCSS, clsx, tailwind-merge |
-| **Animation** | Framer Motion |
 | **Icons** | Lucide React |
 | **Theme** | next-themes |
 | **Tools** | ESLint, Prettier, Git |

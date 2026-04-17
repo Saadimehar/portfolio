@@ -1,9 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef } from "react";
 import { siteConfig } from "@/config/site";
+import { Button } from "@/components/ui/Button";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [successMessage, setSuccessMessage] = useState<string>("");
+  const formRef = useRef<HTMLFormElement>(null);
+
   // Contact info cards data
   const contactInfo = [
     {
@@ -56,6 +69,78 @@ const Contact = () => {
       gradient: `${siteConfig.availableForWork ? "from-purple-500 to-indigo-500" : "from-gray-500 to-slate-500"}`,
     },
   ];
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      console.log("🔄 Submitting form to /api/contact endpoint...");
+      
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      console.log("API Response Status:", response.status);
+      
+      const data = await response.json();
+      console.log("API Response Data:", data);
+
+      if (response.ok && data.ok) {
+        console.log("✅ SUCCESS! Message submitted successfully");
+        setSuccessMessage("Message sent successfully! I'll get back to you soon.");
+        setSubmitStatus("success");
+        
+        // Clear form data
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+
+        // Reset success message after 4 seconds
+        setTimeout(() => {
+          setSubmitStatus("idle");
+        }, 4000);
+      } else {
+        const errorMsg = data.error || "Server returned an error";
+        throw new Error(errorMsg);
+      }
+    } catch (error) {
+      console.error("❌ Error submitting form:", error);
+      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+      
+      setSubmitStatus("error");
+
+      // Reset error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus("idle");
+      }, 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section
@@ -122,53 +207,139 @@ const Contact = () => {
           ))}
         </div>
 
-        {/* Message Section */}
+        {/* Contact Form and Social Links */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Contact Message */}
+          {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 backdrop-blur-sm transition-all duration-300 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/10">
+            <form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 backdrop-blur-sm transition-all duration-300 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/10"
+            >
               {/* Background gradient */}
               <div className="absolute inset-0 bg-linear-to-br from-accent/5 to-transparent pointer-events-none" />
 
               <div className="relative z-10">
-                <div className="text-center space-y-6">
-                  {/* Icon */}
-                  <div className="flex justify-center">
-                    <div className="w-16 h-16 rounded-full bg-linear-to-br from-accent to-secondary p-4 flex items-center justify-center text-background">
-                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                  </div>
+                {/* Form Title */}
+                <h3 className="text-2xl font-bold mb-6 text-foreground">
+                  Send me a Message
+                </h3>
 
-                  {/* Message */}
+                {/* Success Message */}
+                {submitStatus === "success" && (
+                  <div className="mb-6 p-4 rounded-lg bg-green-500/10 border border-green-500/30 animate-slide-up">
+                    <p className="text-green-600 dark:text-green-400 font-medium">
+                      ✓ {successMessage}
+                    </p>
+                  </div>
+                )}
+
+                {/* Error Message */}
+                {submitStatus === "error" && (
+                  <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 animate-slide-up">
+                    <p className="text-red-600 dark:text-red-400 font-medium text-sm">
+                      ✗ Unable to send message. Please try again or contact {siteConfig.email}
+                    </p>
+                  </div>
+                )}
+
+                {/* Form Fields */}
+                <div className="space-y-5">
+                  {/* Name Field */}
                   <div>
-                    <h3 className="text-2xl font-bold mb-4 text-foreground">
-                      Let's Connect
-                    </h3>
-                    <p className="text-base text-muted-foreground mb-6 leading-relaxed">
-                      Thank you for your interest! For business inquiries, collaboration opportunities, or any questions, please reach out directly via email.
-                    </p>
+                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                      Your Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="John Doe"
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition-all duration-300"
+                    />
                   </div>
 
-                  {/* Email Call-to-Action */}
-                  <div className="flex flex-col items-center gap-4">
-                    <a
-                      href={`mailto:${siteConfig.email}`}
-                      className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-linear-to-r from-accent to-secondary text-background font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-accent/30 hover:scale-105"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                      Send Email to {siteConfig.email}
-                    </a>
-                    <p className="text-xs text-muted-foreground">
-                      or copy: <span className="font-mono text-accent">{siteConfig.email}</span>
-                    </p>
+                  {/* Email Field */}
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="john@example.com"
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition-all duration-300"
+                    />
                   </div>
+
+                  {/* Subject Field */}
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="Project Inquiry"
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition-all duration-300"
+                    />
+                  </div>
+
+                  {/* Message Field */}
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="Tell me about your project..."
+                      rows={5}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition-all duration-300 resize-none"
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full mt-2"
+                    size="lg"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                        Send Message
+                      </>
+                    )}
+                  </Button>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
 
           {/* Social Links and CTA */}
