@@ -117,6 +117,7 @@ const Contact = () => {
       }
 
       // Prepare form data - match EmailJS template field names
+      // Create a temporary form element and add it to the DOM (required by EmailJS)
       const tempForm = document.createElement("form");
       
       const addField = (name: string, value: string) => {
@@ -134,6 +135,9 @@ const Contact = () => {
       addField("message", formData.message);
       addField("to_email", siteConfig.email);
 
+      // Temporarily add form to DOM (EmailJS needs it to be attached)
+      document.body.appendChild(tempForm);
+
       console.log("📤 Sending email with form data:", {
         name: formData.name,
         email: formData.email,
@@ -147,6 +151,9 @@ const Contact = () => {
         templateId,
         tempForm
       );
+
+      // Remove the temporary form from DOM after sending
+      document.body.removeChild(tempForm);
 
       console.log("✅ Email sent successfully!", response);
       setSubmitStatus("success");
@@ -168,6 +175,14 @@ const Contact = () => {
       const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
       console.error("📋 Details:", errorMessage);
       setSubmitStatus("error");
+
+      // Clean up: remove temp form from DOM if it exists
+      const tempForms = document.querySelectorAll("form");
+      tempForms.forEach((form) => {
+        if (form.parentElement === document.body && form !== formRef.current) {
+          document.body.removeChild(form);
+        }
+      });
 
       // Reset error message after 5 seconds
       setTimeout(() => {
