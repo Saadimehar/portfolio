@@ -6,7 +6,6 @@ import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 
 // Initialize EmailJS with environment variables
-// Uses NEXT_PUBLIC_ prefix which is the standard Next.js approach for browser-accessible variables
 if (typeof window !== "undefined") {
   const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
   console.log("🔧 EmailJS Public Key loaded:", publicKey ? "✓ Present" : "✗ Missing");
@@ -14,7 +13,7 @@ if (typeof window !== "undefined") {
     emailjs.init(publicKey);
     console.log("✅ EmailJS initialized successfully");
   } else {
-    console.warn("⚠️ EmailJS Public Key is not configured. Please set VITE_EMAILJS_PUBLIC_KEY or NEXT_PUBLIC_EMAILJS_PUBLIC_KEY environment variable.");
+    console.warn("⚠️ EmailJS Public Key is not configured. Please set NEXT_PUBLIC_EMAILJS_PUBLIC_KEY environment variable.");
   }
 }
 
@@ -100,7 +99,6 @@ const Contact = () => {
 
     try {
       // Get environment variables using Next.js NEXT_PUBLIC_ prefix
-      // This is the standard approach for browser-accessible variables in Next.js
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
