@@ -4,9 +4,6 @@ import React, { useState, useRef } from "react";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 
-// Formspree endpoint
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mgoranwp";
-
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -88,37 +85,28 @@ const Contact = () => {
     setSubmitStatus("idle");
 
     try {
-      // Use FormData method - most reliable with Formspree
-      const formDataToSend = new FormData();
-      formDataToSend.append("email", formData.email);
-      formDataToSend.append("name", formData.name);
-      formDataToSend.append("_subject", `New message from ${formData.name}: ${formData.subject}`);
-      formDataToSend.append("message", formData.message);
-      formDataToSend.append("_replyto", formData.email);
-
-      console.log("🔄 Submitting form to Formspree...");
-      console.log("Endpoint:", FORMSPREE_ENDPOINT);
-      console.log("Form Data:", {
-        email: formData.email,
-        name: formData.name,
-        subject: formData.subject,
-        message: formData.message,
-      });
-
-      const response = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        body: formDataToSend,
-      });
-
-      console.log("Response Status:", response.status);
-      console.log("Response OK:", response.ok);
+      console.log("🔄 Submitting form to /api/contact endpoint...");
       
-      const responseData = await response.json();
-      console.log("Response Data:", responseData);
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
 
-      if (response.ok && responseData.ok) {
-        console.log("✅ SUCCESS! Message submitted to Formspree");
-        console.log("Your message has been received. You should receive a confirmation email.");
+      console.log("API Response Status:", response.status);
+      
+      const data = await response.json();
+      console.log("API Response Data:", data);
+
+      if (response.ok && data.ok) {
+        console.log("✅ SUCCESS! Message submitted via API and forwarded to Formspree");
         setSubmitStatus("success");
         
         // Clear form data
@@ -134,19 +122,18 @@ const Contact = () => {
           setSubmitStatus("idle");
         }, 4000);
       } else {
-        const errorMsg = responseData.error || `Server returned status ${response.status}`;
-        throw new Error(`Submission failed: ${errorMsg}`);
+        const errorMsg = data.error || "Server returned an error";
+        throw new Error(errorMsg);
       }
     } catch (error) {
       console.error("❌ Error submitting form:", error);
       const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
       console.error("Error Details:", errorMessage);
       
-      console.warn("\n⚠️ TROUBLESHOOTING - Check these:");
-      console.warn("1. Is your Formspree form ACTIVE? https://formspree.io/f/mgoranwp");
-      console.warn("2. Is saad49861@gmail.com configured as recipient in Formspree settings?");
-      console.warn("3. Have you verified the email address in Formspree (check your email for verification link)?");
-      console.warn("4. Form endpoint: " + FORMSPREE_ENDPOINT);
+      console.warn("\n⚠️ Troubleshooting:");
+      console.warn("1. API endpoint: /api/contact");
+      console.warn("2. Formspree form: https://formspree.io/f/mgoranwp");
+      console.warn("3. Recipient: saad49861@gmail.com");
       
       setSubmitStatus("error");
 

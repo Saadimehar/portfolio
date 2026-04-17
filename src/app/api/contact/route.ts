@@ -1,18 +1,4 @@
-import nodemailer from 'nodemailer';
 import { NextRequest, NextResponse } from 'next/server';
-
-// Create reusable transporter
-const createTransporter = () => {
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT || '587'),
-    secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASSWORD,
-    },
-  });
-};
 
 export async function POST(request: NextRequest) {
   try {
@@ -20,8 +6,9 @@ export async function POST(request: NextRequest) {
 
     // Validate input
     if (!name || !email || !subject || !message) {
+      console.error('Missing required fields:', { name, email, subject, message });
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { ok: false, error: 'Missing required fields' },
         { status: 400 }
       );
     }
@@ -29,55 +16,159 @@ export async function POST(request: NextRequest) {
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+      console.error('Invalid email format:', email);
       return NextResponse.json(
-        { error: 'Invalid email format' },
+        { ok: false, error: 'Invalid email format' },
         { status: 400 }
       );
     }
 
-    // Check if SMTP credentials are configured
-    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
-      console.error('SMTP credentials not configured');
+    // Forward to Formspree (server-side to avoid CORS issues)
+    const formspreeEndpoint = 'https://formspree.io/f/mgoranwp';
+    
+    const payload = new FormData();
+    payload.append('email', email);
+    payload.append('name', name);
+    payload.append('subject', subject);
+    payload.append('message', message);
+    payload.append('_subject', `New message from ${name}: ${subject}`);
+    payload.append('_replyto', email);
+
+    console.log('📤 Forwarding to Formspree:', {
+      endpoint: formspreeEndpoint,
+      formData: { email, name, subject }
+    });
+
+    const formspreeResponse = await fetch(formspreeEndpoint, {
+      method: 'POST',
+      body: payload,
+    });
+
+    const formspreeData = await formspreeResponse.json();
+    console.log('Formspree response:', { status: formspreeResponse.status, data: formspreeData });
+
+    if (formspreeResponse.ok && formspreeData.ok) {
+      console.log('✅ Successfully forwarded to Formspree');
       return NextResponse.json(
         { 
-          error: 'Email service not configured. Please check server configuration.',
-          details: 'Missing SMTP credentials in environment variables'
+          ok: true, 
+          message: 'Message submitted successfully. Sending to saad49861@gmail.com via Formspree.' 
         },
-        { status: 500 }
+        { status: 200 }
+      );
+    } else {
+      const errorMsg = formspreeData.error || 'Formspree rejected the submission';
+      console.error('❌ Formspree error:', errorMsg, formspreeData);
+      
+      return NextResponse.json(
+        { 
+          ok: false, 
+          error: errorMsg,
+          details: formspreeData
+        },
+        { status: formspreeResponse.status || 400 }
+      );
+    }
+  } catch (error) {
+    console.error('❌ Contact form API error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown server error';
+    return NextResponse.json(
+      { 
+        ok: false, 
+        error: errorMessage
+      },
+      { status: 500 }
+    );
+  }
+}
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function POST(request: NextRequest) {
+  try {
+    const { name, email, subject, message } = await request.json();
+
+    // Validate input
+    if (!name || !email || !subject || !message) {
+      console.error('Missing required fields:', { name, email, subject, message });
+      return NextResponse.json(
+        { ok: false, error: 'Missing required fields' },
+        { status: 400 }
       );
     }
 
-    const transporter = createTransporter();
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      console.error('Invalid email format:', email);
+      return NextResponse.json(
+        { ok: false, error: 'Invalid email format' },
+        { status: 400 }
+      );
+    }
 
-    // Email to you (owner)
-    const ownerEmail = {
-      from: process.env.SMTP_FROM_EMAIL,
-      to: process.env.SMTP_USER, // Send to your email
-      subject: `New Portfolio Message: ${subject}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #333;">New Message from Your Portfolio</h2>
-          
-          <div style="background-color: #f5f5f5; padding: 15px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Subject:</strong> ${subject}</p>
-          </div>
-          
-          <div style="background-color: #fff; padding: 15px; border-left: 4px solid #007bff; margin: 20px 0;">
-            <h3 style="margin-top: 0; color: #333;">Message:</h3>
-            <p style="line-height: 1.6; color: #555; white-space: pre-wrap;">${message}</p>
-          </div>
-          
-          <p style="color: #999; font-size: 12px; margin-top: 30px;">
-            Reply directly to ${email} to contact this person.
-          </p>
-        </div>
-      `,
-    };
+    // Forward to Formspree (server-side to avoid CORS issues)
+    const formspreeEndpoint = 'https://formspree.io/f/mgoranwp';
+    
+    const payload = new FormData();
+    payload.append('email', email);
+    payload.append('name', name);
+    payload.append('subject', subject);
+    payload.append('message', message);
+    payload.append('_subject', `New message from ${name}: ${subject}`);
+    payload.append('_replyto', email);
 
-    // Confirmation email to visitor
-    const visitorEmail = {
+    console.log('Forwarding to Formspree:', {
+      endpoint: formspreeEndpoint,
+      formData: { email, name, subject, message }
+    });
+
+    const formspreeResponse = await fetch(formspreeEndpoint, {
+      method: 'POST',
+      body: payload,
+    });
+
+    const formspreeData = await formspreeResponse.json();
+    console.log('Formspree response:', { status: formspreeResponse.status, data: formspreeData });
+
+    if (formspreeResponse.ok && formspreeData.ok) {
+      console.log('✅ Successfully sent to Formspree');
+      return NextResponse.json(
+        { 
+          ok: true, 
+          message: 'Message submitted successfully. You will receive a confirmation email.' 
+        },
+        { status: 200 }
+      );
+    } else {
+      const errorMsg = formspreeData.error || 'Formspree rejected the submission';
+      console.error('❌ Formspree error:', errorMsg);
+      return NextResponse.json(
+        { 
+          ok: false, 
+          error: errorMsg,
+          details: formspreeData,
+          troubleshooting: {
+            step1: 'Verify form is ACTIVE at https://formspree.io/f/mgoranwp',
+            step2: 'Confirm saad49861@gmail.com is set as recipient',
+            step3: 'Check for unverified email in Formspree settings',
+          }
+        },
+        { status: formspreeResponse.status || 400 }
+      );
+    }
+  } catch (error) {
+    console.error('❌ Contact form API error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown server error';
+    return NextResponse.json(
+      { 
+        ok: false, 
+        error: errorMessage,
+        type: error instanceof Error ? error.constructor.name : 'Unknown'
+      },
+      { status: 500 }
+    );
+  }
+}
       from: process.env.SMTP_FROM_EMAIL,
       to: email,
       subject: 'We received your message - Muhammad Saad',
