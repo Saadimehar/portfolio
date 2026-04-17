@@ -1,14 +1,11 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import emailjs from "@emailjs/browser";
+import React, { useState, useRef } from "react";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 
-// Initialize EmailJS
-if (typeof window !== "undefined") {
-  emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "");
-}
+// Formspree endpoint
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mgoranwp";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -91,46 +88,47 @@ const Contact = () => {
     setSubmitStatus("idle");
 
     try {
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      // Prepare form data for Formspree
+      const formDataToSend = new FormData();
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("subject", formData.subject);
+      formDataToSend.append("message", formData.message);
 
-      if (!publicKey || !serviceId || !templateId) {
-        throw new Error("EmailJS configuration is missing. Please set environment variables.");
-      }
-
-      // EmailJS template parameters
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: siteConfig.email,
-      };
-
-      // Send email using EmailJS
-      const response = await emailjs.send(
-        serviceId,
-        templateId,
-        templateParams,
-        publicKey
-      );
-
-      console.log("Email sent successfully!", response);
-      setSubmitStatus("success");
-      
-      // Clear form data
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+      // Send to Formspree
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: formDataToSend,
+        headers: {
+          "Accept": "application/json",
+        },
       });
 
-      // Reset success message after 4 seconds
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 4000);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      if (data.ok) {
+        console.log("Message sent successfully via Formspree!");
+        setSubmitStatus("success");
+        
+        // Clear form data
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+
+        // Reset success message after 4 seconds
+        setTimeout(() => {
+          setSubmitStatus("idle");
+        }, 4000);
+      } else {
+        throw new Error("Formspree submission failed");
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
