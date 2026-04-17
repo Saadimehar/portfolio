@@ -5,9 +5,16 @@ import emailjs from "@emailjs/browser";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 
-// Initialize EmailJS
+// Initialize EmailJS with environment variables
 if (typeof window !== "undefined") {
-  emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "");
+  const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+  console.log("🔧 EmailJS Public Key loaded:", publicKey ? "✓ Present" : "✗ Missing");
+  if (publicKey) {
+    emailjs.init(publicKey);
+    console.log("✅ EmailJS initialized successfully");
+  } else {
+    console.warn("⚠️ EmailJS Public Key is not configured. Please set NEXT_PUBLIC_EMAILJS_PUBLIC_KEY environment variable.");
+  }
 }
 
 const Contact = () => {
@@ -91,32 +98,57 @@ const Contact = () => {
     setSubmitStatus("idle");
 
     try {
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+      // Get environment variables (Next.js uses process.env with NEXT_PUBLIC_ prefix)
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-      if (!publicKey || !serviceId || !templateId) {
-        throw new Error("EmailJS configuration is missing. Please set environment variables.");
+      // Debug logs to verify environment variables are loaded
+      console.log("📧 EmailJS Configuration Check:");
+      console.log("  - Service ID:", serviceId ? "✓ Loaded" : "✗ Missing");
+      console.log("  - Template ID:", templateId ? "✓ Loaded" : "✗ Missing");
+      console.log("  - Public Key:", publicKey ? "✓ Loaded" : "✗ Missing");
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error(
+          "EmailJS configuration is missing. Please verify that NEXT_PUBLIC_EMAILJS_PUBLIC_KEY, " +
+          "NEXT_PUBLIC_EMAILJS_SERVICE_ID, and NEXT_PUBLIC_EMAILJS_TEMPLATE_ID are set in your environment variables."
+        );
       }
 
-      // EmailJS template parameters
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: siteConfig.email,
+      // Prepare form data - match EmailJS template field names
+      const tempForm = document.createElement("form");
+      
+      const addField = (name: string, value: string) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        input.value = value;
+        tempForm.appendChild(input);
       };
 
-      // Send email using EmailJS
-      const response = await emailjs.send(
+      // Add form fields matching your EmailJS template
+      addField("name", formData.name);
+      addField("email", formData.email);
+      addField("subject", formData.subject);
+      addField("message", formData.message);
+      addField("to_email", siteConfig.email);
+
+      console.log("📤 Sending email with form data:", {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message.substring(0, 50) + "...",
+      });
+
+      // Send email using EmailJS sendForm
+      const response = await emailjs.sendForm(
         serviceId,
         templateId,
-        templateParams,
-        publicKey
+        tempForm
       );
 
-      console.log("Email sent successfully!", response);
+      console.log("✅ Email sent successfully!", response);
       setSubmitStatus("success");
       
       // Clear form data
@@ -132,9 +164,9 @@ const Contact = () => {
         setSubmitStatus("idle");
       }, 4000);
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("❌ Error submitting form:", error);
       const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
-      console.error("Details:", errorMessage);
+      console.error("📋 Details:", errorMessage);
       setSubmitStatus("error");
 
       // Reset error message after 5 seconds
