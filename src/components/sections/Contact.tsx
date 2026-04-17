@@ -14,6 +14,7 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const formRef = useRef<HTMLFormElement>(null);
 
   // Contact info cards data
@@ -123,11 +124,13 @@ const Contact = () => {
         }, 4000);
       } else {
         const errorMsg = data.error || "Server returned an error";
+        setErrorMessage(errorMsg);
         throw new Error(errorMsg);
       }
     } catch (error) {
       console.error("❌ Error submitting form:", error);
       const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+      setErrorMessage(errorMessage);
       console.error("Error Details:", errorMessage);
       
       console.warn("\n⚠️ Troubleshooting:");
@@ -242,11 +245,13 @@ const Contact = () => {
                 {submitStatus === "error" && (
                   <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 animate-slide-up">
                     <p className="text-red-600 dark:text-red-400 font-medium text-sm">
-                      ✗ Unable to send message. <br />
-                      <span className="text-xs opacity-90">
-                        Check browser console (F12) for details. 
-                        See FORMSPREE_SETUP_GUIDE.md in the project root for troubleshooting, or contact {siteConfig.email}
-                      </span>
+                      ✗ Unable to send message
+                    </p>
+                    <p className="text-red-500 dark:text-red-500 text-xs mt-2 opacity-90">
+                      {errorMessage}
+                    </p>
+                    <p className="text-xs opacity-75 mt-2">
+                      See FORMSPREE_SETUP_GUIDE.md in the project root for troubleshooting
                     </p>
                   </div>
                 )}
