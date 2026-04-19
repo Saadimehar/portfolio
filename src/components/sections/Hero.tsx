@@ -60,35 +60,55 @@ export const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
           {/* Left Content */}
           <div className="flex flex-col gap-6 sm:gap-8 animate-fade-in">
+            {/* Mobile Profile Picture - Show only on mobile */}
+            <div className="lg:hidden flex justify-center mb-4">
+              <div className="relative w-24 h-24">
+                <div className="absolute inset-0 bg-linear-to-r from-accent/40 to-secondary/20 rounded-full blur-2xl" />
+                <div className="relative w-full h-full bg-card rounded-full overflow-hidden border-2 border-accent/30 shadow-lg">
+                  <Image
+                    src="/images/about/dp.png"
+                    alt={siteConfig.name}
+                    fill
+                    className="object-cover object-center"
+                    priority
+                    sizes="100px"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-background/10 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </div>
+            </div>
+
             {/* Name */}
             <div className="text-center lg:text-left space-y-2">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-2 sm:mb-4">
-                <span className="block dark:text-white text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-1 sm:mb-2 leading-tight">
+                <span className="block dark:text-white text-foreground text-xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-1 sm:mb-2 leading-tight">
                   Hey, I'm
                 </span>
-                <span className="block bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-bold leading-tight">
+                <span className="block bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent text-2xl sm:text-5xl md:text-6xl lg:text-5xl font-bold leading-tight">
                   Muhammad Saad
                 </span>
               </h1>
             </div>
 
             {/* Description */}
-            <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed text-justify">
+            <p className="text-xs sm:text-base md:text-lg text-muted-foreground leading-relaxed text-center lg:text-justify">
               {siteConfig.description}
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start w-full sm:w-auto">
-              <Link href="#contact" className="w-full sm:w-auto">
-                <Button variant="primary" size="md" className="w-full">
+            <div className="flex flex-row gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start w-full flex-wrap">
+              <Link href="#contact" className="flex-1 sm:flex-none min-w-fit">
+                <Button variant="primary" size="sm" className="w-full text-xs sm:text-sm md:text-base px-2 sm:px-4">
                   <span>💬</span>
-                  Let's Talk
+                  <span className="hidden sm:inline">Let's Talk</span>
+                  <span className="sm:hidden">Talk</span>
                 </Button>
               </Link>
-              <a href={siteConfig.resume} download="Muhammad_Saad_CV.pdf" className="w-full sm:w-auto">
-                <Button variant="outline" size="md" className="w-full">
+              <a href={siteConfig.resume} download="Muhammad_Saad_CV.pdf" className="flex-1 sm:flex-none min-w-fit">
+                <Button variant="outline" size="sm" className="w-full text-xs sm:text-sm md:text-base px-2 sm:px-4">
                   <span>📥</span>
-                  Download Resume
+                  <span className="hidden sm:inline">Download Resume</span>
+                  <span className="sm:hidden">Resume</span>
                 </Button>
               </a>
             </div>
