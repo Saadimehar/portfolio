@@ -61,8 +61,8 @@ export const Hero = () => {
           {/* Left Content */}
           <div className="flex flex-col gap-3 sm:gap-8 lg:gap-6 animate-fade-in">
             {/* Mobile Profile Picture - Show only on mobile */}
-            <div className="lg:hidden flex justify-center mb-2">
-              <div className="relative w-24 h-24">
+            <div className="lg:hidden flex justify-center mb-0">
+              <div className="relative w-35 h-35">
                 <div className="absolute inset-0 bg-linear-to-r from-accent/40 to-secondary/20 rounded-full blur-2xl" />
                 <div className="relative w-full h-full bg-card rounded-full overflow-hidden border-2 border-accent/30 shadow-lg">
                   <Image
