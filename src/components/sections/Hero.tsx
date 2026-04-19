@@ -59,9 +59,9 @@ export const Hero = () => {
       <div className="max-w-7xl w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
           {/* Left Content */}
-          <div className="flex flex-col gap-6 sm:gap-8 animate-fade-in">
+          <div className="flex flex-col gap-3 sm:gap-8 lg:gap-6 animate-fade-in">
             {/* Mobile Profile Picture - Show only on mobile */}
-            <div className="lg:hidden flex justify-center mb-4">
+            <div className="lg:hidden flex justify-center mb-2">
               <div className="relative w-24 h-24">
                 <div className="absolute inset-0 bg-linear-to-r from-accent/40 to-secondary/20 rounded-full blur-2xl" />
                 <div className="relative w-full h-full bg-card rounded-full overflow-hidden border-2 border-accent/30 shadow-lg">
@@ -115,7 +115,7 @@ export const Hero = () => {
 
             {/* Social Media Icons */}
             <div className="flex items-center gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start flex-wrap">
-              <div className="flex gap-2 sm:gap-8 ml-16 flex-wrap justify-center lg:justify-start">
+              <div className="flex gap-2 sm:gap-8 ml-0 lg:ml-16 flex-wrap justify-center lg:justify-start">
                 {socialLinks.map((social) => (
                   social.url && (
                     <a
