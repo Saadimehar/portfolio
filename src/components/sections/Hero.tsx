@@ -98,14 +98,14 @@ export const Hero = () => {
             {/* CTA Buttons */}
             <div className="flex flex-row gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start w-full flex-wrap">
               <Link href="#contact" className="flex-1 sm:flex-none min-w-fit">
-                <Button variant="primary" size="sm" className="w-full text-xs sm:text-sm md:text-base px-2 sm:px-4">
+                <Button variant="primary" size="sm" className="w-full text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 lg:px-6 py-1 sm:py-2 lg:py-3">
                   <span>💬</span>
                   <span className="hidden sm:inline">Let's Talk</span>
                   <span className="sm:hidden">Talk</span>
                 </Button>
               </Link>
               <a href={siteConfig.resume} download="Muhammad_Saad_CV.pdf" className="flex-1 sm:flex-none min-w-fit">
-                <Button variant="outline" size="sm" className="w-full text-xs sm:text-sm md:text-base px-2 sm:px-4">
+                <Button variant="outline" size="sm" className="w-full text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 lg:px-6 py-1 sm:py-2 lg:py-3">
                   <span>📥</span>
                   <span className="hidden sm:inline">Download Resume</span>
                   <span className="sm:hidden">Resume</span>
