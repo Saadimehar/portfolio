@@ -197,14 +197,33 @@ npm run lint     # Run ESLint
 ## 🐛 Troubleshooting
 
 ### Emails Not Sending?
-1. Verify EmailJS Service is **Connected** (not Failed)
-2. Check `.env.local` has correct Public Key, Service ID, Template ID
-3. Ensure email template exists in EmailJS dashboard
-4. Check browser console for error messages
+**Common Issues & Solutions:**
+
+1. **Environment Variables Not Set on Vercel**
+   - Go to Vercel Dashboard → Settings → Environment Variables
+   - Add all three variables with correct scopes (Production, Preview, Development)
+   - Redeploy after adding variables
+   - Verify values match EmailJS account exactly
+
+2. **DOM Attachment Issue** (FIXED in latest version)
+   - The form element must be attached to DOM before EmailJS sends
+   - Current implementation: `document.body.appendChild(tempForm)` before send, then removed after
+   - If form not sending, check console for "Email sent successfully" message
+
+3. **EmailJS Configuration**
+   - Verify Public Key, Service ID, and Template ID in `.env.local`
+   - Ensure EmailJS service is **Connected** (not Failed) in dashboard
+   - Email template must exist with fields: name, email, subject, message, to_email
+
+4. **Check Browser Console (F12)**
+   - Look for ✅ success message: "Email sent successfully!"
+   - Look for ❌ error messages with specific error details
+   - Check for 🔧 "Public Key loaded" indicator
 
 ### Theme Not Persisting?
 - Clear browser cache and localStorage
 - Restart dev server
+- Check if `next-themes` package is properly installed
 
 ### Build Errors?
 ```bash
@@ -216,13 +235,67 @@ npm run build
 
 ---
 
+## 📧 EmailJS Integration Details
+
+### What Was Fixed
+The contact form initially had a critical bug where the temporary form element was created in memory but **not attached to the DOM** before EmailJS tried to send it. EmailJS requires the form to be present in the document to serialize field values.
+
+**Solution Implemented:**
+```javascript
+// ✅ Correct implementation
+document.body.appendChild(tempForm);           // Attach to DOM
+const response = await emailjs.sendForm(...);   // Now EmailJS can read fields
+document.body.removeChild(tempForm);           // Clean up after sending
+```
+
+### How the Contact Form Works
+1. User submits form with name, email, subject, and message
+2. Form data is validated client-side
+3. Temporary form element created with all required fields
+4. **Form attached to DOM** (critical for EmailJS)
+5. EmailJS `sendForm()` submits to your configured email service
+6. **Form removed from DOM** (cleanup)
+7. Success/error message displayed to user
+8. Form fields cleared on success
+
+### Environment Variables
+```env
+# Required for EmailJS client-side email sending
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key     # From Account → API Keys
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id     # From Email Services
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id   # From Email Templates
+```
+
+**Note:** `NEXT_PUBLIC_` prefix makes these accessible in browser (safe - it's the public key, not secret key)
+
+### Production Deployment to Vercel
+
+1. **Push code to GitHub** (already set up)
+2. **Access Vercel Dashboard:** https://vercel.com/dashboard
+3. **Select your portfolio project**
+4. **Settings → Environment Variables**
+5. **Add the three EmailJS variables:**
+   - Set scope to: Production, Preview, Development
+   - Use exact values from `.env.local`
+6. **Click Deployments → Redeploy** (to apply new variables)
+7. **Wait for green checkmark** (deployment complete)
+8. **Test at:** https://saadimehar.vercel.app#contact
+
+### Testing the Integration
+- Submit test message through contact form
+- Check console (F12) for success/error messages
+- Verify email arrives in inbox
+- Confirm success message displays on page
+
+---
+
 ## 📄 License
 
 This portfolio is open source and available on GitHub.
 
 ---
 
-**Last Updated:** April 2026 | **Status:** ✅ Production Ready
+**Last Updated:** April 2026 | **Status:** ✅ Production Ready | **EmailJS:** ✅ Fully Integrated
    - Create a `.env.local` file in the root directory:
 ```
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key

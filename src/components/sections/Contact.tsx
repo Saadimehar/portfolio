@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 
@@ -16,6 +17,15 @@ const Contact = () => {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [successMessage, setSuccessMessage] = useState<string>("");
   const formRef = useRef<HTMLFormElement>(null);
+
+  // Initialize EmailJS on component mount
+  useEffect(() => {
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (typeof window !== "undefined" && publicKey) {
+      emailjs.init(publicKey);
+      console.log("🔧 EmailJS initialized successfully with public key");
+    }
+  }, []);
 
   // Contact info cards data
   const contactInfo = [
@@ -86,9 +96,6 @@ const Contact = () => {
     setSubmitStatus("idle");
 
     try {
-<<<<<<< HEAD
-      console.log("🔄 Submitting form to /api/contact endpoint...");
-=======
       // Get environment variables using Next.js NEXT_PUBLIC_ prefix
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
@@ -148,55 +155,23 @@ const Contact = () => {
 
       console.log("✅ Email sent successfully!", response);
       setSubmitStatus("success");
->>>>>>> e5167f5dfa61e34d5482cf393c62ddf470e1a87e
       
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-        }),
+      // Clear form data
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
       });
 
-      console.log("API Response Status:", response.status);
-      
-      const data = await response.json();
-      console.log("API Response Data:", data);
-
-      if (response.ok && data.ok) {
-        console.log("✅ SUCCESS! Message submitted successfully");
-        setSuccessMessage("Message sent successfully! I'll get back to you soon.");
-        setSubmitStatus("success");
-        
-        // Clear form data
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-
-        // Reset success message after 4 seconds
-        setTimeout(() => {
-          setSubmitStatus("idle");
-        }, 4000);
-      } else {
-        const errorMsg = data.error || "Server returned an error";
-        throw new Error(errorMsg);
-      }
+      // Reset success message after 4 seconds
+      setTimeout(() => {
+        setSubmitStatus("idle");
+      }, 4000);
     } catch (error) {
       console.error("❌ Error submitting form:", error);
       const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
-<<<<<<< HEAD
-      
-=======
       console.error("📋 Details:", errorMessage);
->>>>>>> e5167f5dfa61e34d5482cf393c62ddf470e1a87e
       setSubmitStatus("error");
 
       // Clean up: remove temp form from DOM if it exists
