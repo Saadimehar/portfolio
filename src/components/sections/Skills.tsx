@@ -143,7 +143,7 @@ const Skills = () => {
               Skills & Expertise
             </span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed text-justify">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed text-center">
             A comprehensive overview of my technical skills and soft skills. Click the categories below to filter and view my expertise across different domains.
           </p>
         </div>

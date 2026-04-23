@@ -40,7 +40,7 @@ const Projects = () => {
               Featured Projects
             </span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed text-justify">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed text-center">
             Explore my diverse portfolio of projects spanning UI/UX design, full-stack web development, and software solutions. Each project demonstrates my commitment to creating exceptional digital experiences and solving real-world problems.
           </p>
         </div>
