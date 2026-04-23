@@ -28,11 +28,11 @@ body {
 @import "tailwindcss";
 
 @theme {
-  /* Dark Mode (Default) */
+  /* Dark Mode (Default) - Premium Dark Theme */
   --color-background: #000000;
   --color-foreground: #ffffff;
-  --color-accent: #7c3aed;
-  --color-secondary: #582da3;
+  --color-accent: #7c3aed; /* Vibrant Purple */
+  --color-secondary: #582da3; /* Deep Purple */
   --color-muted: #1f2937;
   --color-muted-foreground: #9ca3af;
   --color-border: #1f2937;
@@ -71,16 +71,16 @@ html {
   overscroll-behavior: none;
 }
 
-/* Light Mode */
+/* Light Mode - Premium Light Theme */
 .light {
-  --color-background: #ffffff;
-  --color-foreground: #000000;
+  --color-background: #f8f9fa;
+  --color-foreground: #1a1a1a;
   --color-accent: #7c3aed;
   --color-secondary: #582da3;
-  --color-muted: #f3f4f6;
-  --color-muted-foreground: #6b7280;
-  --color-border: #e5e7eb;
-  --color-card: #f9fafb;
+  --color-muted: #e8eaed;
+  --color-muted-foreground: #5f6368;
+  --color-border: #dadce0;
+  --color-card: #ffffff;
 }
 
 /* Mobile Responsive Improvements */
@@ -97,4 +97,28 @@ html {
     min-height: 44px;
     min-width: 44px;
   }
+}
+
+/* Improved focus states for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.light button:focus-visible,
+.light a:focus-visible {
+  outline: 2px solid #7c3aed;
+}
+
+/* Improved disabled state visibility */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Category buttons active state - consistent in both modes */
+button[class*="from-accent"][class*="to-secondary"] {
+  background: linear-gradient(135deg, #7c3aed, #582da3);
+  color: #ffffff;
 }

@@ -33,6 +33,13 @@ const iconMap: { [key: string]: string } = {
   teamwork: "🤝",
 };
 
+// Responsive button sizes based on screen size
+const BUTTON_SIZES = {
+  mobile: { width: "w-7 h-7", icon: "text-xs" },
+  tablet: { width: "w-12 h-12", icon: "text-xl" },
+  desktop: { width: "w-14 h-14", icon: "text-2xl" },
+};
+
 const skillCategories: { id: SkillCategory; label: string; icon: string }[] = [
   { id: "all", label: "All Skills", icon: "🎯" },
   { id: "languages", label: "Languages", icon: "💻" },
@@ -47,7 +54,25 @@ const Skills = () => {
   const [activeCategory, setActiveCategory] = useState<SkillCategory>("all");
   const [scrollPosition, setScrollPosition] = useState(0);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [buttonSize, setButtonSize] = useState("desktop");
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+
+  // Detect screen size for responsive button sizing
+  useEffect(() => {
+    const updateButtonSize = () => {
+      if (window.innerWidth < 640) {
+        setButtonSize("mobile");
+      } else if (window.innerWidth < 1024) {
+        setButtonSize("tablet");
+      } else {
+        setButtonSize("desktop");
+      }
+    };
+
+    updateButtonSize();
+    window.addEventListener("resize", updateButtonSize);
+    return () => window.removeEventListener("resize", updateButtonSize);
+  }, []);
 
   // Filter skills based on active category
   const filteredSkills =
@@ -144,25 +169,41 @@ const Skills = () => {
         {/* Horizontal Scrolling Skills with Arrow Buttons */}
         <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
           {/* Skills Container with Arrows */}
-          <div className="relative group flex items-center justify-center gap-4">
-            {/* Left Arrow Button - Beautiful Design */}
+          <div className="relative group flex items-center justify-center gap-0 sm:gap-0 lg:gap-0">
+            {/* Left Arrow Button - Responsive & Beautiful Design */}
             <button
               onClick={() => scroll("left")}
               disabled={!canScrollLeft}
-              className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden relative z-20 transition-all duration-500 transform hover:scale-110 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group/arrow"
+              className={`shrink-0 ${
+                buttonSize === "mobile"
+                  ? BUTTON_SIZES.mobile.width
+                  : buttonSize === "tablet"
+                  ? BUTTON_SIZES.tablet.width
+                  : BUTTON_SIZES.desktop.width
+              } rounded-xl lg:rounded-full overflow-hidden relative z-20 transition-all duration-500 transform hover:scale-110 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 cursor-pointer group/arrow shadow-lg hover:shadow-xl`}
               aria-label="Scroll left"
+              title={canScrollLeft ? "Scroll left" : "No more items"}
             >
-              {/* Arrow Button Background - Dark Mode */}
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 dark:from-slate-800 dark:to-slate-950 border border-slate-600 dark:border-slate-700" />
+              {/* Base Gradient Background - Dark Mode */}
+              <div className="absolute inset-0 bg-linear-to-br from-accent to-secondary opacity-100 dark:opacity-100 transition-opacity duration-300" />
               
-              {/* Arrow Button Background - Light Mode */}
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300 border border-slate-400 dark:hidden" />
+              {/* Light Mode Overlay */}
+              <div className="absolute inset-0 bg-linear-to-br from-accent/80 to-secondary/80 opacity-0 light:opacity-100 transition-opacity duration-300" />
               
-              {/* Hover Effect Glow */}
-              <div className="absolute inset-0 bg-linear-to-r from-accent/0 via-accent/20 to-secondary/0 opacity-0 group-hover/arrow:opacity-100 transition-opacity duration-300" />
+              {/* Hover Glow Effect */}
+              <div className="absolute inset-0 bg-linear-to-r from-accent/40 via-secondary/40 to-accent/40 opacity-0 group-hover/arrow:opacity-100 transition-opacity duration-300 blur-sm" />
+              
+              {/* Enhanced Shine Effect on Hover */}
+              <div className="absolute -inset-0.5 bg-linear-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover/arrow:opacity-100 transition-opacity duration-300 animate-pulse" style={{ animationDuration: "2s" }} />
               
               {/* Arrow Icon */}
-              <div className="relative w-full h-full flex items-center justify-center text-2xl font-bold text-slate-950 dark:text-slate-950 group-hover/arrow:text-accent transition-colors duration-300">
+              <div className={`relative w-full h-full flex items-center justify-center font-bold text-white transition-all duration-300 ${
+                buttonSize === "mobile"
+                  ? "text-xs"
+                  : buttonSize === "tablet"
+                  ? "text-xl"
+                  : "text-2xl"
+              }`}>
                 ←
               </div>
             </button>
@@ -178,7 +219,7 @@ const Skills = () => {
               <div className="hidden" />
 
               {/* Skills Grid - Horizontal Scrolling */}
-              <div className="flex flex-nowrap gap-8 pb-4 px-8">
+              <div className="flex flex-nowrap gap-6 sm:gap-7 lg:gap-8 pb-4 px-4 sm:px-6 lg:px-8">
                 {filteredSkills.map((skill, idx) => (
                   <SkillBox key={`skill-${skill.name}-${idx}`} skill={skill} />
                 ))}
@@ -196,24 +237,40 @@ const Skills = () => {
               `}</style>
             </div>
 
-            {/* Right Arrow Button - Beautiful Design */}
+            {/* Right Arrow Button - Responsive & Beautiful Design */}
             <button
               onClick={() => scroll("right")}
               disabled={!canScrollRight}
-              className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden relative z-20 transition-all duration-500 transform hover:scale-110 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group/arrow"
+              className={`shrink-0 ${
+                buttonSize === "mobile"
+                  ? BUTTON_SIZES.mobile.width
+                  : buttonSize === "tablet"
+                  ? BUTTON_SIZES.tablet.width
+                  : BUTTON_SIZES.desktop.width
+              } rounded-xl lg:rounded-full overflow-hidden relative z-20 transition-all duration-500 transform hover:scale-110 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 cursor-pointer group/arrow shadow-lg hover:shadow-xl`}
               aria-label="Scroll right"
+              title={canScrollRight ? "Scroll right" : "No more items"}
             >
-              {/* Arrow Button Background - Dark Mode */}
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 dark:from-slate-800 dark:to-slate-950 border border-slate-600 dark:border-slate-700" />
+              {/* Base Gradient Background - Dark Mode */}
+              <div className="absolute inset-0 bg-linear-to-br from-secondary to-accent opacity-100 dark:opacity-100 transition-opacity duration-300" />
               
-              {/* Arrow Button Background - Light Mode */}
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300 border border-slate-400 dark:hidden" />
+              {/* Light Mode Overlay */}
+              <div className="absolute inset-0 bg-linear-to-br from-secondary/80 to-accent/80 opacity-0 light:opacity-100 transition-opacity duration-300" />
               
-              {/* Hover Effect Glow */}
-              <div className="absolute inset-0 bg-linear-to-r from-secondary/0 via-secondary/20 to-accent/0 opacity-0 group-hover/arrow:opacity-100 transition-opacity duration-300" />
+              {/* Hover Glow Effect */}
+              <div className="absolute inset-0 bg-linear-to-r from-secondary/40 via-accent/40 to-secondary/40 opacity-0 group-hover/arrow:opacity-100 transition-opacity duration-300 blur-sm" />
+              
+              {/* Enhanced Shine Effect on Hover */}
+              <div className="absolute -inset-0.5 bg-linear-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover/arrow:opacity-100 transition-opacity duration-300 animate-pulse" style={{ animationDuration: "2s" }} />
               
               {/* Arrow Icon */}
-              <div className="relative w-full h-full flex items-center justify-center text-2xl font-bold text-slate-950 dark:text-slate-950 group-hover/arrow:text-accent transition-colors duration-300">
+              <div className={`relative w-full h-full flex items-center justify-center font-bold text-white transition-all duration-300 ${
+                buttonSize === "mobile"
+                  ? "text-xs"
+                  : buttonSize === "tablet"
+                  ? "text-xl"
+                  : "text-2xl"
+              }`}>
                 →
               </div>
             </button>
@@ -255,17 +312,17 @@ const SkillBox: React.FC<SkillBoxProps> = ({ skill }) => {
 
   return (
     <div
-      className="flex-shrink-0 group"
+      className="shrink-0 group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={`relative w-32 h-32 rounded-2xl backdrop-blur-lg border-2 transition-all duration-500 flex flex-col items-center justify-center cursor-pointer overflow-hidden ${
+      <div className={`relative w-24 h-24 sm:w-28 sm:h-28 lg:w-36 lg:h-36 rounded-2xl backdrop-blur-lg border-2 transition-all duration-500 flex flex-col items-center justify-center cursor-pointer overflow-hidden ${
         isHovered
           ? "border-accent shadow-2xl shadow-accent/60 transform scale-105"
-          : "border-white/10 shadow-lg"
+          : "border-white/10 dark:border-white/10 light:border-accent/20 shadow-lg dark:shadow-lg light:shadow-md"
       }`}>
-        {/* Black Background */}
-        <div className="absolute inset-0 light:bg-white/60 dark:bg-black border border-white/5" />
+        {/* Background - Responsive to light/dark mode */}
+        <div className="absolute inset-0 bg-linear-to-br from-card to-background/80 dark:from-card dark:to-background/80 light:from-white/70 light:to-white/50 border border-white/5 dark:border-white/5 light:border-accent/10" />
 
         {/* Hover Gradient overlay */}
         <div className={`absolute inset-0 bg-linear-to-br from-accent/20 to-secondary/20 opacity-0 transition-opacity duration-500 ${
@@ -273,15 +330,17 @@ const SkillBox: React.FC<SkillBoxProps> = ({ skill }) => {
         }`} />
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full gap-2">
+        <div className="relative z-10 flex flex-col items-center justify-center h-full gap-1 sm:gap-2">
           {/* Icon */}
           <div className={`transition-all duration-500 ${
-            isHovered ? "scale-140 text-accent" : "text-4xl"
+            isHovered ? "scale-140" : "scale-100"
           }`}>
-            <span className="text-5xl">{iconMap[skill.icon] || "💻"}</span>
+            <span className={`${
+              isHovered ? "text-accent" : ""
+            } transition-colors duration-300 text-3xl sm:text-4xl lg:text-5xl`}>{iconMap[skill.icon] || "💻"}</span>
           </div>
           {/* Name */}
-          <span className={`text-sm font-bold text-center text-foreground transition-all duration-300 line-clamp-2 px-2 ${
+          <span className={`text-xs sm:text-sm font-bold text-center text-foreground dark:text-foreground light:text-foreground/90 transition-all duration-300 line-clamp-2 px-1 sm:px-2 ${
             isHovered ? "text-accent" : ""
           }`}>
             {skill.name}

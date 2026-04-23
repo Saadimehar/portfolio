@@ -164,7 +164,7 @@ const Footer = () => {
                 <li>
                   <a href="#about" className="text-muted-foreground hover:text-accent transition-colors duration-300 text-sm font-medium flex items-center gap-2 group">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    Consulting
+                    Graphic Designing
                   </a>
                 </li>
               </ul>
@@ -223,7 +223,7 @@ const Footer = () => {
           <div className="h-px bg-linear-to-r from-transparent via-border to-transparent mb-8" />
 
           {/* Bottom Footer */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-6">
             {/* Copyright */}
             <p className="text-sm text-muted-foreground text-center md:text-left">
               <span className="font-medium text-foreground">
@@ -233,7 +233,7 @@ const Footer = () => {
             </p>
 
             {/* Bottom Links */}
-            <div className="flex items-center gap-6 text-sm">
+            {/* <div className="flex items-center gap-6 text-sm">
               <a
                 href="#privacy"
                 className="text-muted-foreground hover:text-accent transition-colors duration-300 font-medium"
@@ -258,7 +258,7 @@ const Footer = () => {
                 </svg>
                 Resume
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
 

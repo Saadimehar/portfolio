@@ -38,7 +38,7 @@ export default function Navbar() {
               <span className="text-background font-bold text-lg">S</span>
             </div>
             <span className="ml-2 text-xl font-bold bg-linear-to-r from-accent to-secondary bg-clip-text text-transparent">
-              Saad Dev
+              Saad Web
             </span>
           </Link>
 

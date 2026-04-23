@@ -127,7 +127,7 @@ const About = () => {
             {/* Glassmorphism Card */}
             <div className="relative group">
               {/* Gradient border effect */}
-              <div className="absolute -inset-0.5 bg-linear-to-br from-accent/30 to-secondary/30 rounded-3xl blur-lg opacity-75 group-hover:opacity-100 transition duration-500" />
+              <div className="absolute -inset-0.5 bg-linear-to-br from-accent/20 to-secondary/20 rounded-3xl blur-lg opacity-75 group-hover:opacity-100 transition duration-500" />
 
               {/* Main card content */}
               <div className="relative bg-linear-to-br from-background/40 to-background/20 backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-10">
