@@ -127,8 +127,9 @@ const Contact = () => {
       };
 
       // Add form fields matching your EmailJS template
-      addField("name", formData.name);
-      addField("email", formData.email);
+      // Template expects: user_name, user_email, subject, message
+      addField("user_name", formData.name);
+      addField("user_email", formData.email);
       addField("subject", formData.subject);
       addField("message", formData.message);
       addField("to_email", siteConfig.email);
@@ -155,6 +156,7 @@ const Contact = () => {
 
       console.log("✅ Email sent successfully!", response);
       setSubmitStatus("success");
+      setSuccessMessage("Message sent successfully! I'll get back to you soon.");
       
       // Clear form data
       setFormData({
@@ -167,12 +169,14 @@ const Contact = () => {
       // Reset success message after 4 seconds
       setTimeout(() => {
         setSubmitStatus("idle");
+        setSuccessMessage("");
       }, 4000);
     } catch (error) {
       console.error("❌ Error submitting form:", error);
       const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
       console.error("📋 Details:", errorMessage);
       setSubmitStatus("error");
+      setSuccessMessage("");
 
       // Clean up: remove temp form from DOM if it exists
       const tempForms = document.querySelectorAll("form");
