@@ -25,7 +25,7 @@ const Projects = () => {
       : allProjects.filter((p) => p.category === activeCategory);
 
   return (
-    <section className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
+    <section className="min-h-screen py-[20px] sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-linear-to-br from-accent/10 to-transparent rounded-full blur-3xl animate-pulse" />
@@ -35,12 +35,12 @@ const Projects = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Title */}
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+          <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-bold mb-4">
             <span className="bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
               Featured Projects
             </span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed text-center">
+          <p className="text-muted-foreground text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed text-center">
             Explore my diverse portfolio of projects spanning UI/UX design, full-stack web development, and software solutions. Each project demonstrates my commitment to creating exceptional digital experiences and solving real-world problems.
           </p>
         </div>

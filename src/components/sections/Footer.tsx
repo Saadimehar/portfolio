@@ -89,14 +89,14 @@ const Footer = () => {
             {/* Brand Section */}
             <div className="space-y-6 animate-fade-in">
               <div>
-                <h3 className="text-2xl font-bold bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
+                <h3 className="text-[clamp(1.5rem,4vw,2rem)] font-bold bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
                   Muhammad Saad
                 </h3>
-                <p className="text-sm text-muted-foreground mt-2">
+                <p className="text-[clamp(0.75rem,1.5vw,0.875rem)] text-muted-foreground mt-2">
                   Full Stack Developer & UI/UX Designer
                 </p>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-[clamp(0.75rem,1.5vw,0.875rem)] text-muted-foreground leading-relaxed">
                 Crafting beautiful and functional digital experiences. Let's build something amazing together.
               </p>
               {/* Social Icons */}
@@ -119,7 +119,7 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div className="space-y-6 animate-fade-in">
-              <h3 className="text-lg font-semibold text-foreground">
+              <h3 className="text-[clamp(1rem,2.5vw,1.25rem)] font-semibold text-foreground">
                 Quick Links
               </h3>
               <ul className="space-y-3">
@@ -127,7 +127,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-muted-foreground hover:text-accent transition-colors duration-300 text-sm font-medium flex items-center gap-2 group"
+                      className="text-muted-foreground hover:text-accent transition-colors duration-300 text-[clamp(0.75rem,1.5vw,0.875rem)] font-medium flex items-center gap-2 group"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {link.name}
@@ -139,30 +139,30 @@ const Footer = () => {
 
             {/* About Short */}
             <div className="space-y-6 animate-fade-in">
-              <h3 className="text-lg font-semibold text-foreground">
+              <h3 className="text-[clamp(1rem,2.5vw,1.25rem)] font-semibold text-foreground">
                 Services
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <a href="#about" className="text-muted-foreground hover:text-accent transition-colors duration-300 text-sm font-medium flex items-center gap-2 group">
+                  <a href="#about" className="text-muted-foreground hover:text-accent transition-colors duration-300 text-[clamp(0.75rem,1.5vw,0.875rem)] font-medium flex items-center gap-2 group">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     Web Development
                   </a>
                 </li>
                 <li>
-                  <a href="#about" className="text-muted-foreground hover:text-accent transition-colors duration-300 text-sm font-medium flex items-center gap-2 group">
+                  <a href="#about" className="text-muted-foreground hover:text-accent transition-colors duration-300 text-[clamp(0.75rem,1.5vw,0.875rem)] font-medium flex items-center gap-2 group">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     UI/UX Design
                   </a>
                 </li>
                 <li>
-                  <a href="#about" className="text-muted-foreground hover:text-accent transition-colors duration-300 text-sm font-medium flex items-center gap-2 group">
+                  <a href="#about" className="text-muted-foreground hover:text-accent transition-colors duration-300 text-[clamp(0.75rem,1.5vw,0.875rem)] font-medium flex items-center gap-2 group">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     Full Stack
                   </a>
                 </li>
                 <li>
-                  <a href="#about" className="text-muted-foreground hover:text-accent transition-colors duration-300 text-sm font-medium flex items-center gap-2 group">
+                  <a href="#about" className="text-muted-foreground hover:text-accent transition-colors duration-300 text-[clamp(0.75rem,1.5vw,0.875rem)] font-medium flex items-center gap-2 group">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     Graphic Designing
                   </a>
@@ -172,10 +172,10 @@ const Footer = () => {
 
             {/* Newsletter Signup */}
             <div className="space-y-6 animate-fade-in">
-              <h3 className="text-lg font-semibold text-foreground">
+              <h3 className="text-[clamp(1rem,2.5vw,1.25rem)] font-semibold text-foreground">
                 Stay Updated
               </h3>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-muted-foreground text-[clamp(0.75rem,1.5vw,0.875rem)]">
                 Subscribe to get updates on new projects and articles.
               </p>
               <form onSubmit={handleSubscribe} className="space-y-3">
@@ -206,12 +206,12 @@ const Footer = () => {
                   </button>
                 </div>
                 {subscribeStatus === "success" && (
-                  <p className="text-xs text-green-600 dark:text-green-400 font-medium">
+                  <p className="text-[clamp(0.7rem,1.5vw,0.75rem)] text-green-600 dark:text-green-400 font-medium">
                     ✓ Successfully subscribed!
                   </p>
                 )}
                 {subscribeStatus === "error" && (
-                  <p className="text-xs text-red-600 dark:text-red-400 font-medium">
+                  <p className="text-[clamp(0.7rem,1.5vw,0.75rem)] text-red-600 dark:text-red-400 font-medium">
                     ✗ Subscription failed.
                   </p>
                 )}
@@ -225,7 +225,7 @@ const Footer = () => {
           {/* Bottom Footer */}
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
             {/* Copyright */}
-            <p className="text-sm text-muted-foreground text-center md:text-left">
+            <p className="text-[clamp(0.75rem,1.5vw,0.875rem)] text-muted-foreground text-center md:text-left">
               <span className="font-medium text-foreground">
                 &copy; {currentYear} Muhammad Saad.
               </span>

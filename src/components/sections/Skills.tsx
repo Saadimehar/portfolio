@@ -128,7 +128,7 @@ const Skills = () => {
   };
 
   return (
-    <section className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
+    <section className="min-h-screen py-[20px] sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-linear-to-br from-accent/10 to-transparent rounded-full blur-3xl animate-pulse" />
@@ -138,12 +138,12 @@ const Skills = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Title */}
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+          <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-bold mb-4">
             <span className="bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
               Skills & Expertise
             </span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed text-center">
+          <p className="text-muted-foreground text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed text-center">
             A comprehensive overview of my technical skills and soft skills. Click the categories below to filter and view my expertise across different domains.
           </p>
         </div>

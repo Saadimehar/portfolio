@@ -169,7 +169,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 relative overflow-hidden bg-background transition-colors duration-300"
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-[20px] sm:py-20 relative overflow-hidden bg-background transition-colors duration-300"
     >
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-linear-to-br from-accent/5 via-transparent to-secondary/5 pointer-events-none" />
@@ -177,7 +177,7 @@ const Contact = () => {
       <div className="max-w-6xl w-full relative z-10">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-bold mb-6">
             <span className="block dark:text-white text-foreground mb-2">
               Let's Work Together
             </span>
@@ -185,7 +185,7 @@ const Contact = () => {
               Get In Touch
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             I'm always interested in hearing about new projects and opportunities.
             Feel free to reach out to me through any of the channels below.
           </p>

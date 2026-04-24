@@ -100,7 +100,7 @@ const About = () => {
   ];
 
   return (
-    <section className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
+    <section className="min-h-screen py-[20px] sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-linear-to-br from-accent/10 to-transparent rounded-full blur-3xl animate-pulse" />
@@ -109,19 +109,19 @@ const About = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Title */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+        <div className="text-center mb-8 sm:mb-16 py-[20px] animate-fade-in">
+          <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-bold mb-4">
             <span className="bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
               About
             </span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed text-center">
+          <p className="text-muted-foreground text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed text-center">
             Passionate developer dedicated to creating exceptional digital experiences through code and design
           </p>
         </div>
 
         {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-start">
           {/* Left Column - Story Card */}
           <div className="animate-fade-in" style={{ animationDelay: "0.1s" }}>
             {/* Glassmorphism Card */}
@@ -130,17 +130,17 @@ const About = () => {
               <div className="absolute -inset-0.5 bg-linear-to-br from-accent/20 to-secondary/20 rounded-3xl blur-lg opacity-75 group-hover:opacity-100 transition duration-500" />
 
               {/* Main card content */}
-              <div className="relative bg-linear-to-br from-background/40 to-background/20 backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-10">
+              <div className="relative bg-linear-to-br from-background/40 to-background/20 backdrop-blur-xl border border-white/10 rounded-3xl p-5 sm:p-8 lg:p-10">
                 {/* Decorative accent */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-accent/20 to-transparent rounded-full blur-2xl -mr-16 -mt-16" />
 
                 {/* Content */}
                 <div className="relative z-10">
-                  <h3 className="text-3xl sm:text-4xl font-bold mb-4 bg-linear-to-r from-accent to-secondary bg-clip-text text-transparent text-center">
+                  <h3 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold mb-3 sm:mb-4 bg-linear-to-r from-accent to-secondary bg-clip-text text-transparent text-center">
                     About Me
                   </h3>
 
-                  <div className="space-y-4 text-muted-foreground leading-relaxed text-justify">
+                  <div className="space-y-3 sm:space-y-4 text-muted-foreground text-xs sm:text-sm md:text-base leading-relaxed text-justify">
                     <p>
                       I'm a passionate Software Engineering student specializing in full-stack web development. My journey in tech started with a curiosity to build things and solve problems through code.
                     </p>
@@ -153,7 +153,7 @@ const About = () => {
                   </div>
 
                   {/* Mini Features Grid */}
-                  <div className="grid grid-cols-4 gap-2 mt-8 mb-6">
+                  <div className="grid grid-cols-4 gap-2 mt-5 sm:mt-8 mb-4 sm:mb-6">
                     {miniFeatures.map((mini) => (
                       <div
                         key={mini.id}
@@ -179,7 +179,7 @@ const About = () => {
                   </div>
 
                   {/* CTA Button */}
-                  <button className="mt-8 px-8 py-3 bg-linear-to-r from-accent to-secondary text-background font-semibold rounded-lg hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 transform hover:scale-105 mx-auto block">
+                  <button className="mt-6 sm:mt-8 px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base bg-linear-to-r from-accent to-secondary text-background font-semibold rounded-lg hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 transform hover:scale-105 mx-auto block">
                     Let's Connect
                   </button>
                 </div>
@@ -188,7 +188,7 @@ const About = () => {
           </div>
 
           {/* Right Column - Feature Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 animate-fade-in" style={{ animationDelay: "0.2s" }}>
             {features.map((feature, index) => (
               <div
                 key={feature.id}
@@ -196,7 +196,7 @@ const About = () => {
                 style={{ animationDelay: `${0.3 + index * 0.1}s` }}
               >
                 {/* Feature Card */}
-                <div className="relative h-full overflow-hidden rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 p-6 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/20 transform hover:-translate-y-1 group hover:bg-linear-to-br hover:from-background/70 hover:to-background/40">
+                <div className="relative h-full overflow-hidden rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 p-4 sm:p-6 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/20 transform hover:-translate-y-1 group hover:bg-linear-to-br hover:from-background/70 hover:to-background/40">
                   {/* Animated gradient background on hover */}
                   <div className={`absolute inset-0 bg-linear-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
 
@@ -211,12 +211,12 @@ const About = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:bg-linear-to-r group-hover:from-accent group-hover:to-secondary group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 text-center">
+                    <h3 className="text-[clamp(1rem,3vw,1.25rem)] font-bold text-foreground mb-2 group-hover:bg-linear-to-r group-hover:from-accent group-hover:to-secondary group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 text-center">
                       {feature.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-sm text-muted-foreground group-hover:text-foreground/90 transition-colors duration-300 text-center leading-relaxed">
+                    <p className="text-[clamp(0.75rem,2vw,0.875rem)] text-muted-foreground group-hover:text-foreground/90 transition-colors duration-300 text-center leading-relaxed">
                       {feature.description}
                     </p>
 

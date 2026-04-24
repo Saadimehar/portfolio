@@ -21,7 +21,7 @@ const Experience = () => {
       : experiences.filter((exp) => exp.type === activeType);
 
   return (
-    <section className="min-h-screen py-16 sm:py-20 px-3 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
+    <section className="min-h-screen py-[20px] sm:py-20 px-3 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 -left-40 w-80 h-80 bg-linear-to-br from-accent/10 to-transparent rounded-full blur-3xl animate-pulse" />
@@ -31,12 +31,12 @@ const Experience = () => {
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Section Title */}
         <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
+          <h2 className="text-[clamp(1.875rem,6vw,3.5rem)] font-bold mb-3 sm:mb-4">
             <span className="bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
               Experience & Education
             </span>
           </h2>
-          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
             A comprehensive overview of my professional journey and educational background. Each role has shaped my skills and contributed to my growth as a developer.
           </p>
         </div>

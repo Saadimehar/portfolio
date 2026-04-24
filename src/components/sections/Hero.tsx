@@ -52,7 +52,7 @@ const socialLinks = [
 
 export const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center px-3 sm:px-6 lg:px-8 py-8 sm:py-20 lg:py-8 relative overflow-hidden bg-background transition-colors duration-300">
+    <section className="min-h-screen flex items-center justify-center px-3 sm:px-6 lg:px-8 py-[10px] sm:py-20 lg:py-8 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-linear-to-br from-accent/5 to-transparent pointer-events-none" />
 
@@ -80,18 +80,18 @@ export const Hero = () => {
 
             {/* Name */}
             <div className="text-center lg:text-left space-y-2">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-2 sm:mb-4">
-                <span className="block light:text-black dark:text-white text-foreground text-xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-1 sm:mb-2 leading-tight">
+              <h1 className="text-[clamp(2rem,8vw,4rem)] font-bold leading-tight mb-2 sm:mb-4">
+                <span className="block dark:text-white text-[clamp(1.25rem,8vw,4rem)] font-semibold mb-1 sm:mb-2 leading-tight">
                   Hey, I'm
                 </span>
-                <span className="block bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent text-2xl sm:text-5xl md:text-6xl lg:text-5xl font-bold leading-tight">
+                <span className="block bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent text-[clamp(1.5rem,7vw,3.5rem)] font-bold leading-tight">
                   Muhammad Saad
                 </span>
               </h1>
             </div>
 
             {/* Description */}
-            <p className="text-s sm:text-base md:text-lg text-muted-foreground leading-relaxed text-center lg:text-justify">
+            <p className="text-[clamp(0.875rem,2.5vw,1.125rem)] text-muted-foreground leading-relaxed text-center lg:text-justify">
               {siteConfig.description}
             </p>
 
