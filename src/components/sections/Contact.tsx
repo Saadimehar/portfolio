@@ -6,6 +6,13 @@ import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 
 const Contact = () => {
+  // EmailJS Configuration - Hardcoded for reliability in production
+  const EMAILJS_CONFIG = {
+    publicKey: "xPB2wRXh8nJMbvOBI",
+    serviceId: "service_saadimehar",
+    templateId: "template_uprzefv",
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,10 +27,9 @@ const Contact = () => {
 
   // Initialize EmailJS on component mount
   useEffect(() => {
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    if (typeof window !== "undefined" && publicKey) {
-      emailjs.init(publicKey);
-      console.log("🔧 EmailJS initialized successfully with public key");
+    if (typeof window !== "undefined" && EMAILJS_CONFIG.publicKey) {
+      emailjs.init(EMAILJS_CONFIG.publicKey);
+      console.log("🔧 EmailJS initialized successfully");
     }
   }, []);
 
@@ -96,12 +102,10 @@ const Contact = () => {
     setSubmitStatus("idle");
 
     try {
-      // Get environment variables using Next.js NEXT_PUBLIC_ prefix
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+      // Use hardcoded EmailJS configuration
+      const { serviceId, templateId, publicKey } = EMAILJS_CONFIG;
 
-      // Debug logs to verify environment variables are loaded
+      // Debug logs to verify configuration is loaded
       console.log("📧 EmailJS Configuration Check:");
       console.log("  - Service ID:", serviceId ? "✓ Loaded" : "✗ Missing");
       console.log("  - Template ID:", templateId ? "✓ Loaded" : "✗ Missing");
@@ -109,8 +113,7 @@ const Contact = () => {
 
       if (!serviceId || !templateId || !publicKey) {
         throw new Error(
-          "EmailJS configuration is missing. Please verify that NEXT_PUBLIC_EMAILJS_PUBLIC_KEY, " +
-          "NEXT_PUBLIC_EMAILJS_SERVICE_ID, and NEXT_PUBLIC_EMAILJS_TEMPLATE_ID are set in your environment variables."
+          "EmailJS configuration is missing."
         );
       }
 
