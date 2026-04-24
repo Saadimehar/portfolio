@@ -29,7 +29,6 @@ const Contact = () => {
   useEffect(() => {
     if (typeof window !== "undefined" && EMAILJS_CONFIG.publicKey) {
       emailjs.init(EMAILJS_CONFIG.publicKey);
-      console.log("🔧 EmailJS initialized successfully");
     }
   }, []);
 
@@ -102,23 +101,12 @@ const Contact = () => {
     setSubmitStatus("idle");
 
     try {
-      // Use hardcoded EmailJS configuration
       const { serviceId, templateId, publicKey } = EMAILJS_CONFIG;
 
-      // Debug logs to verify configuration is loaded
-      console.log("📧 EmailJS Configuration Check:");
-      console.log("  - Service ID:", serviceId ? "✓ Loaded" : "✗ Missing");
-      console.log("  - Template ID:", templateId ? "✓ Loaded" : "✗ Missing");
-      console.log("  - Public Key:", publicKey ? "✓ Loaded" : "✗ Missing");
-
       if (!serviceId || !templateId || !publicKey) {
-        throw new Error(
-          "EmailJS configuration is missing."
-        );
+        throw new Error("EmailJS configuration is missing.");
       }
 
-      // Prepare form data - match EmailJS template field names
-      // Create a temporary form element and add it to the DOM (required by EmailJS)
       const tempForm = document.createElement("form");
       
       const addField = (name: string, value: string) => {
@@ -129,39 +117,25 @@ const Contact = () => {
         tempForm.appendChild(input);
       };
 
-      // Add form fields matching your EmailJS template
-      // Template expects: user_name, user_email, subject, message
       addField("user_name", formData.name);
       addField("user_email", formData.email);
       addField("subject", formData.subject);
       addField("message", formData.message);
       addField("to_email", siteConfig.email);
 
-      // Temporarily add form to DOM (EmailJS needs it to be attached)
       document.body.appendChild(tempForm);
 
-      console.log("📤 Sending email with form data:", {
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subject,
-        message: formData.message.substring(0, 50) + "...",
-      });
-
-      // Send email using EmailJS sendForm
       const response = await emailjs.sendForm(
         serviceId,
         templateId,
         tempForm
       );
 
-      // Remove the temporary form from DOM after sending
       document.body.removeChild(tempForm);
 
-      console.log("✅ Email sent successfully!", response);
       setSubmitStatus("success");
       setSuccessMessage("Message sent successfully! I'll get back to you soon.");
       
-      // Clear form data
       setFormData({
         name: "",
         email: "",
@@ -169,19 +143,14 @@ const Contact = () => {
         message: "",
       });
 
-      // Reset success message after 4 seconds
       setTimeout(() => {
         setSubmitStatus("idle");
         setSuccessMessage("");
       }, 4000);
     } catch (error) {
-      console.error("❌ Error submitting form:", error);
-      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
-      console.error("📋 Details:", errorMessage);
       setSubmitStatus("error");
       setSuccessMessage("");
 
-      // Clean up: remove temp form from DOM if it exists
       const tempForms = document.querySelectorAll("form");
       tempForms.forEach((form) => {
         if (form.parentElement === document.body && form !== formRef.current) {
@@ -189,7 +158,6 @@ const Contact = () => {
         }
       });
 
-      // Reset error message after 5 seconds
       setTimeout(() => {
         setSubmitStatus("idle");
       }, 5000);
