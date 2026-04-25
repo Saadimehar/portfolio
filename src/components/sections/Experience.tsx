@@ -2,11 +2,13 @@
 
 import React, { useState } from "react";
 import { experiences } from "@/data/experience";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 type ExperienceType = "all" | "work" | "education";
 
 const Experience = () => {
   const [activeType, setActiveType] = useState<ExperienceType>("all");
+  const { ref: experienceRef, isVisible: experienceVisible } = useScrollAnimation(0.2);
 
   const experienceTypes: { id: ExperienceType; label: string; icon: string }[] = [
     { id: "all", label: "All", icon: "📋" },
@@ -21,7 +23,7 @@ const Experience = () => {
       : experiences.filter((exp) => exp.type === activeType);
 
   return (
-    <section className="min-h-screen py-[20px] sm:py-20 px-3 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
+    <section ref={experienceRef} className="min-h-screen py-[20px] sm:py-20 px-3 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 -left-40 w-80 h-80 bg-linear-to-br from-accent/10 to-transparent rounded-full blur-3xl animate-pulse" />
@@ -30,7 +32,7 @@ const Experience = () => {
 
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Section Title */}
-        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+        <div className={`text-center mb-12 sm:mb-16 ${experienceVisible ? 'animate-fade-in' : 'opacity-0'}`}>
           <h2 className="text-[clamp(1.875rem,6vw,3.5rem)] font-bold mb-3 sm:mb-4">
             <span className="bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
               Experience & Education
@@ -42,7 +44,7 @@ const Experience = () => {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+        <div className={`flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 ${experienceVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: "0.1s" }}>
           {experienceTypes.map((type) => (
             <button
               key={type.id}
@@ -60,7 +62,7 @@ const Experience = () => {
         </div>
 
         {/* Timeline */}
-        <div className="relative animate-fade-in" style={{ animationDelay: "0.2s" }}>
+        <div className={`relative ${experienceVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: "0.2s" }}>
           {/* Timeline line - visible on lg screens only */}
           <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 w-1 h-full bg-linear-to-b from-accent via-secondary to-accent/30 rounded-full" />
 
@@ -69,8 +71,8 @@ const Experience = () => {
             {filteredExperiences.map((experience, index) => (
               <div
                 key={experience.id}
-                className="animate-fade-in"
-                style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+                className={`${experienceVisible ? 'animate-slide-up' : 'opacity-0'}`}
+                style={{ animationDelay: `${0.25 + index * 0.1}s` }}
               >
                 <div className={`flex items-center ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"}`}>
                   {/* Timeline dot - visible on lg screens only */}

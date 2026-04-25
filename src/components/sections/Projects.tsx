@@ -4,11 +4,13 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { projects as allProjects } from "@/data/projects";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 type ProjectCategory = "all" | "uiux" | "fullstack" | "frontend" | "software";
 
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all");
+  const { ref: projectsRef, isVisible: projectsVisible } = useScrollAnimation(0.2);
 
   const categories: { id: ProjectCategory; label: string; icon: string }[] = [
     { id: "all", label: "All Projects", icon: "🎯" },
@@ -25,7 +27,7 @@ const Projects = () => {
       : allProjects.filter((p) => p.category === activeCategory);
 
   return (
-    <section className="min-h-screen py-[20px] sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
+    <section ref={projectsRef} className="min-h-screen py-[20px] sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-linear-to-br from-accent/10 to-transparent rounded-full blur-3xl animate-pulse" />
@@ -34,7 +36,7 @@ const Projects = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Title */}
-        <div className="text-center mb-16 animate-fade-in">
+        <div className={`text-center mb-16 ${projectsVisible ? 'animate-fade-in' : 'opacity-0'}`}>
           <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-bold mb-4">
             <span className="bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
               Featured Projects
@@ -46,7 +48,7 @@ const Projects = () => {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+        <div className={`flex flex-wrap justify-center gap-3 mb-12 ${projectsVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: "0.1s" }}>
           {categories.map((category) => (
             <button
               key={category.id}
@@ -64,11 +66,11 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${projectsVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: "0.2s" }}>
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
-              className="group h-full animate-fade-in"
+              className={`group h-full ${projectsVisible ? 'animate-slide-up' : 'opacity-0'}`}
               style={{ animationDelay: `${0.3 + index * 0.1}s` }}
             >
               {/* Project Card */}

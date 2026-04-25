@@ -1,8 +1,11 @@
 "use client";
 
 import React from "react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const About = () => {
+  const { ref: aboutRef, isVisible: aboutVisible } = useScrollAnimation(0.2);
+  
   // Mini feature items for the left card
   const miniFeatures = [
     {
@@ -100,7 +103,7 @@ const About = () => {
   ];
 
   return (
-    <section className="min-h-screen py-[20px] sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
+    <section ref={aboutRef} className="min-h-screen py-[20px] sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-linear-to-br from-accent/10 to-transparent rounded-full blur-3xl animate-pulse" />
@@ -109,7 +112,7 @@ const About = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Title */}
-        <div className="text-center mb-8 sm:mb-16 py-[20px] animate-fade-in">
+        <div className={`text-center mb-8 sm:mb-16 py-[20px] ${aboutVisible ? 'animate-fade-in' : 'opacity-0'}`}>
           <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-bold mb-4">
             <span className="bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
               About
@@ -123,7 +126,7 @@ const About = () => {
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-start">
           {/* Left Column - Story Card */}
-          <div className="animate-fade-in" style={{ animationDelay: "0.1s" }}>
+          <div className={`${aboutVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: "0.1s" }}>
             {/* Glassmorphism Card */}
             <div className="relative group">
               {/* Gradient border effect */}
@@ -154,13 +157,14 @@ const About = () => {
 
                   {/* Mini Features Grid */}
                   <div className="grid grid-cols-4 gap-2 mt-5 sm:mt-8 mb-4 sm:mb-6">
-                    {miniFeatures.map((mini) => (
+                    {miniFeatures.map((mini, index) => (
                       <div
                         key={mini.id}
-                        className="group relative rounded-lg p-3 bg-linear-to-br from-white/5 to-white/0 border border-white/10 hover:border-accent/30 transition-all duration-300 hover:bg-linear-to-br hover:from-white/10 hover:to-white/5 cursor-pointer"
+                        className={`group relative rounded-lg p-3 bg-linear-to-br from-white/5 to-white/0 border border-white/10 hover:border-accent/30 transition-all duration-300 hover:bg-linear-to-br hover:from-white/10 hover:to-white/5 cursor-pointer animate-bounce-in ${aboutVisible ? 'animate-bounce-in' : 'opacity-0'}`}
+                        style={{ animationDelay: `${0.6 + index * 0.1}s` }}
                       >
                         {/* Glow effect */}
-                        <div className={`absolute inset-0 bg-linear-to-br ${mini.gradient} rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur`} />
+                        <div className={`absolute inset-0 bg-linear-to-br ${mini.gradient} rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur` } />
 
                         {/* Icon container */}
                         <div className="relative flex flex-col items-center gap-1.5">
@@ -179,7 +183,7 @@ const About = () => {
                   </div>
 
                   {/* CTA Button */}
-                  <button className="mt-6 sm:mt-8 px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base bg-linear-to-r from-accent to-secondary text-background font-semibold rounded-lg hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 transform hover:scale-105 mx-auto block">
+                  <button className="mt-6 sm:mt-8 px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base bg-linear-to-r from-accent to-secondary text-background font-semibold rounded-lg hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 transform hover:scale-105 mx-auto block animate-slide-up animate-stagger-5">
                     Let's Connect
                   </button>
                 </div>
@@ -192,7 +196,7 @@ const About = () => {
             {features.map((feature, index) => (
               <div
                 key={feature.id}
-                className="group h-full animate-fade-in"
+                className={`group h-full ${aboutVisible ? 'animate-slide-up' : 'opacity-0'}`}
                 style={{ animationDelay: `${0.3 + index * 0.1}s` }}
               >
                 {/* Feature Card */}
@@ -206,7 +210,7 @@ const About = () => {
                   {/* Content */}
                   <div className="relative z-10 flex flex-col items-center">
                     {/* Icon container */}
-                    <div className={`p-3 rounded-xl bg-linear-to-br ${feature.gradient} text-white mb-4 group-hover:shadow-lg ${feature.shadowColor} transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-6 flex items-center justify-center`}>
+                    <div className={`p-3 rounded-xl bg-linear-to-br ${feature.gradient} text-white mb-4 group-hover:shadow-lg ${feature.shadowColor} transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-6 flex items-center justify-center animate-fade-in`} style={{ animationDelay: `${0.4 + index * 0.1}s` }}>
                       {feature.icon}
                     </div>
 
@@ -234,14 +238,14 @@ const About = () => {
 
         {/* My Journey Timeline */}
         <div className="mt-32 mb-16">
-          <h3 className="text-3xl sm:text-4xl font-bold mb-16 text-center bg-linear-to-r from-accent to-secondary bg-clip-text text-transparent">
+          <h3 className={`text-3xl sm:text-4xl font-bold mb-16 text-center bg-linear-to-r from-accent to-secondary bg-clip-text text-transparent ${aboutVisible ? 'animate-slide-up' : 'opacity-0'}`}>
             My Journey
           </h3>
 
           {/* Horizontal Journey Container */}
           <div className="max-w-6xl mx-auto space-y-8">
             {/* Row 1: 2023 Button + Started Journey Box */}
-            <div className="flex flex-col md:flex-row gap-6 items-center animate-fade-in" style={{ animationDelay: "0.3s" }}>
+            <div className={`flex flex-col md:flex-row gap-6 items-center ${aboutVisible ? 'animate-slide-in-left' : 'opacity-0'}`} style={{ animationDelay: "0.6s" }}>
               {/* Year Button */}
               <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-blue-500 to-cyan-500 text-background font-bold text-lg hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 shrink-0 w-full md:w-auto">
                 2023
@@ -260,7 +264,7 @@ const About = () => {
             </div>
 
             {/* Row 2: First Major Project Box + 2024 Button */}
-            <div className="flex flex-col md:flex-row-reverse gap-6 items-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
+            <div className={`flex flex-col md:flex-row-reverse gap-6 items-center ${aboutVisible ? 'animate-slide-in-right' : 'opacity-0'}`} style={{ animationDelay: "0.7s" }}>
               {/* Year Button */}
               <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-purple-500 to-pink-600 text-background font-bold text-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105 shrink-0 w-full md:w-auto">
                 2024
@@ -279,7 +283,7 @@ const About = () => {
             </div>
 
             {/* Row 3: 2025 Button + Internship & Projects Box */}
-            <div className="flex flex-col md:flex-row gap-6 items-center animate-fade-in" style={{ animationDelay: "0.5s" }}>
+            <div className={`flex flex-col md:flex-row gap-6 items-center ${aboutVisible ? 'animate-slide-in-left' : 'opacity-0'}`} style={{ animationDelay: "0.8s" }}>
               {/* Year Button */}
               <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-indigo-500 to-purple-600 text-background font-bold text-lg hover:shadow-lg hover:shadow-indigo-500/50 transition-all duration-300 transform hover:scale-105 shrink-0 w-full md:w-auto">
                 2025

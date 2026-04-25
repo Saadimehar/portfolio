@@ -52,19 +52,19 @@ const socialLinks = [
 
 export const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center px-3 sm:px-6 lg:px-8 py-[10px] sm:py-20 lg:py-8 relative overflow-hidden bg-background transition-colors duration-300">
+    <section className="min-h-[100dvh] flex items-center justify-center px-3 sm:px-6 lg:px-8 py-5 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-linear-to-br from-accent/5 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
           {/* Left Content */}
-          <div className="flex flex-col gap-3 sm:gap-8 lg:gap-6 animate-fade-in">
+          <div className="flex flex-col gap-3 sm:gap-8 lg:gap-6">
             {/* Mobile Profile Picture - Show only on mobile */}
-            <div className="lg:hidden flex justify-center mb-0">
-              <div className="relative w-35 h-35">
-                <div className="absolute inset-0 bg-linear-to-r from-accent/40 to-secondary/20 rounded-full blur-2xl" />
-                <div className="relative w-full h-full bg-card rounded-full overflow-hidden border-2 border-accent/30 shadow-lg">
+            <div className="lg:hidden flex justify-center mb-0 animate-fade-in" style={{ animationDelay: '0s' }}>
+              <div className="relative w-35 h-35 animate-float">
+                <div className="absolute inset-0 bg-linear-to-r from-accent/40 to-secondary/20 rounded-full blur-2xl animate-pulse-slow" />
+                <div className="relative w-full h-full bg-card rounded-full overflow-hidden border-2 border-accent/30 shadow-lg hover:border-accent/60 hover:shadow-accent/30 transition-all duration-300">
                   <Image
                     src="/images/about/dp.png"
                     alt={siteConfig.name}
@@ -79,33 +79,33 @@ export const Hero = () => {
             </div>
 
             {/* Name */}
-            <div className="text-center lg:text-left space-y-2">
+            <div className="text-center lg:text-left space-y-2 animate-fade-in" style={{ animationDelay: '0.1s' }}>
               <h1 className="text-[clamp(2rem,8vw,4rem)] font-bold leading-tight mb-2 sm:mb-4">
                 <span className="block dark:text-white text-[clamp(1.25rem,8vw,4rem)] font-semibold mb-1 sm:mb-2 leading-tight">
                   Hey, I'm
                 </span>
-                <span className="block bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent text-[clamp(1.5rem,7vw,3.5rem)] font-bold leading-tight">
+                <span className="block bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent text-[clamp(1.5rem,7vw,3.5rem)] font-bold leading-tight hover:animate-glow transition-all duration-300">
                   Muhammad Saad
                 </span>
               </h1>
             </div>
 
             {/* Description */}
-            <p className="text-[clamp(0.875rem,2.5vw,1.125rem)] text-muted-foreground leading-relaxed text-center lg:text-justify">
+            <p className="text-[clamp(0.875rem,2.5vw,1.125rem)] text-muted-foreground leading-relaxed text-center lg:text-justify animate-fade-in transition-all duration-300 hover:text-foreground" style={{ animationDelay: '0.2s' }}>
               {siteConfig.description}
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-row gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start w-full flex-wrap">
-              <Link href="#contact" className="flex-1 sm:flex-none min-w-fit">
-                <Button variant="primary" size="sm" className="w-full text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 lg:px-6 py-1 sm:py-2 lg:py-3">
+            <div className="flex flex-row gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start w-full flex-wrap animate-fade-in" style={{ animationDelay: '0.3s' }}>
+              <Link href="#contact" className="flex-1 sm:flex-none min-w-fit group">
+                <Button variant="primary" size="sm" className="w-full text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 lg:px-6 py-1 sm:py-2 lg:py-3 transform group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-accent/50 transition-all duration-300">
                   <span>💬</span>
                   <span className="hidden sm:inline">Let's Talk</span>
                   <span className="sm:hidden">Talk</span>
                 </Button>
               </Link>
-              <a href={siteConfig.resume} download="Muhammad_Saad_CV.pdf" className="flex-1 sm:flex-none min-w-fit">
-                <Button variant="outline" size="sm" className="w-full text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 lg:px-6 py-1 sm:py-2 lg:py-3">
+              <a href={siteConfig.resume} download="Muhammad_Saad_CV.pdf" className="flex-1 sm:flex-none min-w-fit group">
+                <Button variant="outline" size="sm" className="w-full text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 lg:px-6 py-1 sm:py-2 lg:py-3 transform group-hover:scale-105 group-hover:bg-accent/10 transition-all duration-300">
                   <span>📥</span>
                   <span className="hidden sm:inline">Download Resume</span>
                   <span className="sm:hidden">Resume</span>
@@ -114,16 +114,17 @@ export const Hero = () => {
             </div>
 
             {/* Social Media Icons */}
-            <div className="flex items-center gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start flex-wrap">
+            <div className="flex items-center gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start flex-wrap animate-fade-in" style={{ animationDelay: '0.4s' }}>
               <div className="flex gap-2 sm:gap-8 ml-0 lg:ml-16 flex-wrap justify-center lg:justify-start">
-                {socialLinks.map((social) => (
+                {socialLinks.map((social, index) => (
                   social.url && (
                     <a
                       key={social.name}
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`${social.bgColor} ${social.hoverColor} text-background w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg shadow-md`}
+                      className={`${social.bgColor} ${social.hoverColor} text-background w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg shadow-md animate-bounce-in`}
+                      style={{ animationDelay: `${0.5 + index * 0.08}s` }}
                       aria-label={social.name}
                       title={social.name}
                     >
@@ -136,19 +137,19 @@ export const Hero = () => {
           </div>
 
           {/* Right Image */}
-          <div className="hidden lg:flex justify-center items-center animate-slide-up">
-            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
+          <div className="hidden lg:flex justify-center items-center animate-fade-in" style={{ animationDelay: '0.5s' }}>
+            <div className="relative w-80 h-80 lg:w-96 lg:h-96 animate-float">
               {/* Gradient border effect */}
-              <div className="absolute inset-0 bg-linear-to-r from-accent/40 to-secondary/20 rounded-3xl blur-3xl" />
+              <div className="absolute inset-0 bg-linear-to-r from-accent/40 to-secondary/20 rounded-3xl blur-3xl animate-pulse-slow" />
 
               {/* Image container */}
-              <div className="relative w-full h-full bg-card rounded-3xl overflow-hidden border border-accent/20 hover:border-accent/50 transition-all duration-300 shadow-2xl hover:shadow-accent/20">
+              <div className="relative w-full h-full bg-card rounded-3xl overflow-hidden border border-accent/20 hover:border-accent/50 transition-all duration-300 shadow-2xl hover:shadow-accent/20 hover:scale-105 transform group-hover:animate-glow">
                 {/* Personal image */}
                 <Image
                   src="/images/about/dp.png"
                   alt={siteConfig.name}
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-center transition-transform duration-300 hover:scale-110"
                   priority
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
@@ -158,11 +159,11 @@ export const Hero = () => {
               </div>
 
               {/* Floating card effect */}
-              <div className="absolute -bottom-6 -right-6 bg-card border border-accent/20 rounded-2xl p-4 w-44 shadow-lg backdrop-blur-sm hover:shadow-accent/30 transition-shadow duration-300">
-                <p className="text-sm font-semibold text-accent mb-1">
+              <div className="absolute -bottom-6 -right-6 bg-card border border-accent/20 rounded-2xl p-4 w-44 shadow-lg backdrop-blur-sm hover:shadow-accent/30 transition-all duration-300 animate-bounce-in" style={{ animationDelay: '0.6s' }}>
+                <p className="text-sm font-semibold text-accent mb-1 animate-fade-in" style={{ animationDelay: '0.7s' }}>
                   ✨ Available for work
                 </p>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground animate-fade-in" style={{ animationDelay: '0.8s' }}>
                   {siteConfig.availableForWork
                     ? "Let's build something great! 🚀"
                     : "Coming soon"}
