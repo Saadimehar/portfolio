@@ -120,13 +120,13 @@ const Footer = () => {
             </div>
 
             {/* Quick Links */}
-            <div className={`space-y-6 ${footerVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>
+            <div className={`space-y-6 ${footerVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.08s' }}>
               <h3 className="text-[clamp(1rem,2.5vw,1.25rem)] font-semibold text-foreground">
                 Quick Links
               </h3>
               <ul className="space-y-3">
                 {quickLinks.map((link, index) => (
-                  <li key={link.name} className={`${footerVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: `${0.15 + index * 0.05}s` }}>
+                  <li key={link.name} className={`${footerVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: `${0.12 + index * 0.04}s` }}>
                     <a
                       href={link.href}
                       className="text-muted-foreground hover:text-accent transition-colors duration-300 text-[clamp(0.75rem,1.5vw,0.875rem)] font-medium flex items-center gap-2 group"
@@ -140,7 +140,7 @@ const Footer = () => {
             </div>
 
             {/* About Short */}
-            <div className={`space-y-6 ${footerVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+            <div className={`space-y-6 ${footerVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.16s' }}>
               <h3 className="text-[clamp(1rem,2.5vw,1.25rem)] font-semibold text-foreground">
                 Services
               </h3>
@@ -173,7 +173,7 @@ const Footer = () => {
             </div>
 
             {/* Newsletter Signup */}
-            <div className={`space-y-6 ${footerVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
+            <div className={`space-y-6 ${footerVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.24s' }}>
               <h3 className="text-[clamp(1rem,2.5vw,1.25rem)] font-semibold text-foreground">
                 Stay Updated
               </h3>

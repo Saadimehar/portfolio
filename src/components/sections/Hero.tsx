@@ -79,7 +79,7 @@ export const Hero = () => {
             </div>
 
             {/* Name */}
-            <div className="text-center lg:text-left space-y-2 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <div className="text-center lg:text-left space-y-2 animate-fade-in" style={{ animationDelay: '0.08s' }}>
               <h1 className="text-[clamp(2rem,8vw,4rem)] font-bold leading-tight mb-2 sm:mb-4">
                 <span className="block dark:text-white text-[clamp(1.25rem,8vw,4rem)] font-semibold mb-1 sm:mb-2 leading-tight">
                   Hey, I'm
@@ -91,12 +91,12 @@ export const Hero = () => {
             </div>
 
             {/* Description */}
-            <p className="text-[clamp(0.875rem,2.5vw,1.125rem)] text-muted-foreground leading-relaxed text-center lg:text-justify animate-fade-in transition-all duration-300 hover:text-foreground" style={{ animationDelay: '0.2s' }}>
+            <p className="text-[clamp(0.875rem,2.5vw,1.125rem)] text-muted-foreground leading-relaxed text-center lg:text-justify animate-fade-in transition-all duration-300 hover:text-foreground" style={{ animationDelay: '0.15s' }}>
               {siteConfig.description}
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-row gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start w-full flex-wrap animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="flex flex-row gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start w-full flex-wrap animate-fade-in" style={{ animationDelay: '0.22s' }}>
               <Link href="#contact" className="flex-1 sm:flex-none min-w-fit group">
                 <Button variant="primary" size="sm" className="w-full text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 lg:px-6 py-1 sm:py-2 lg:py-3 transform group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-accent/50 transition-all duration-300">
                   <span>💬</span>
@@ -114,7 +114,7 @@ export const Hero = () => {
             </div>
 
             {/* Social Media Icons */}
-            <div className="flex items-center gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start flex-wrap animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <div className="flex items-center gap-2 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start flex-wrap animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <div className="flex gap-2 sm:gap-8 ml-0 lg:ml-16 flex-wrap justify-center lg:justify-start">
                 {socialLinks.map((social, index) => (
                   social.url && (
@@ -124,7 +124,7 @@ export const Hero = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`${social.bgColor} ${social.hoverColor} text-background w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg shadow-md animate-bounce-in`}
-                      style={{ animationDelay: `${0.5 + index * 0.08}s` }}
+                      style={{ animationDelay: `${0.36 + index * 0.06}s` }}
                       aria-label={social.name}
                       title={social.name}
                     >
@@ -137,7 +137,7 @@ export const Hero = () => {
           </div>
 
           {/* Right Image */}
-          <div className="hidden lg:flex justify-center items-center animate-fade-in" style={{ animationDelay: '0.5s' }}>
+          <div className="hidden lg:flex justify-center items-center animate-fade-in" style={{ animationDelay: '0.36s' }}>
             <div className="relative w-80 h-80 lg:w-96 lg:h-96 animate-float">
               {/* Gradient border effect */}
               <div className="absolute inset-0 bg-linear-to-r from-accent/40 to-secondary/20 rounded-3xl blur-3xl animate-pulse-slow" />
@@ -159,11 +159,11 @@ export const Hero = () => {
               </div>
 
               {/* Floating card effect */}
-              <div className="absolute -bottom-6 -right-6 bg-card border border-accent/20 rounded-2xl p-4 w-44 shadow-lg backdrop-blur-sm hover:shadow-accent/30 transition-all duration-300 animate-bounce-in" style={{ animationDelay: '0.6s' }}>
-                <p className="text-sm font-semibold text-accent mb-1 animate-fade-in" style={{ animationDelay: '0.7s' }}>
+              <div className="absolute -bottom-6 -right-6 bg-card border border-accent/20 rounded-2xl p-4 w-44 shadow-lg backdrop-blur-sm hover:shadow-accent/30 transition-all duration-300 animate-bounce-in" style={{ animationDelay: '0.42s' }}>
+                <p className="text-sm font-semibold text-accent mb-1 animate-fade-in" style={{ animationDelay: '0.48s' }}>
                   ✨ Available for work
                 </p>
-                <p className="text-xs text-muted-foreground animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                <p className="text-xs text-muted-foreground animate-fade-in" style={{ animationDelay: '0.54s' }}>
                   {siteConfig.availableForWork
                     ? "Let's build something great! 🚀"
                     : "Coming soon"}

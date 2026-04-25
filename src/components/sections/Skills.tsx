@@ -151,7 +151,7 @@ const Skills = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+        <div className="flex flex-wrap justify-center gap-3 mb-16 animate-fade-in" style={{ animationDelay: "0.08s" }}>
           {skillCategories.map((category) => (
             <button
               key={category.id}
@@ -169,7 +169,7 @@ const Skills = () => {
         </div>
 
         {/* Horizontal Scrolling Skills with Arrow Buttons */}
-        <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
+        <div className="animate-fade-in" style={{ animationDelay: "0.15s" }}>
           {/* Skills Container with Arrows */}
           <div className="relative group flex items-center justify-center gap-0 sm:gap-0 lg:gap-0">
             {/* Left Arrow Button - Responsive & Beautiful Design */}

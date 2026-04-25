@@ -126,7 +126,7 @@ const About = () => {
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-start">
           {/* Left Column - Story Card */}
-          <div className={`${aboutVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: "0.1s" }}>
+          <div className={`${aboutVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: "0.08s" }}>
             {/* Glassmorphism Card */}
             <div className="relative group">
               {/* Gradient border effect */}
@@ -161,7 +161,7 @@ const About = () => {
                       <div
                         key={mini.id}
                         className={`group relative rounded-lg p-3 bg-linear-to-br from-white/5 to-white/0 border border-white/10 hover:border-accent/30 transition-all duration-300 hover:bg-linear-to-br hover:from-white/10 hover:to-white/5 cursor-pointer animate-bounce-in ${aboutVisible ? 'animate-bounce-in' : 'opacity-0'}`}
-                        style={{ animationDelay: `${0.6 + index * 0.1}s` }}
+                        style={{ animationDelay: `${0.4 + index * 0.08}s` }}
                       >
                         {/* Glow effect */}
                         <div className={`absolute inset-0 bg-linear-to-br ${mini.gradient} rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur` } />
@@ -192,12 +192,12 @@ const About = () => {
           </div>
 
           {/* Right Column - Feature Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 animate-fade-in" style={{ animationDelay: "0.15s" }}>
             {features.map((feature, index) => (
               <div
                 key={feature.id}
                 className={`group h-full ${aboutVisible ? 'animate-slide-up' : 'opacity-0'}`}
-                style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+                style={{ animationDelay: `${0.2 + index * 0.08}s` }}
               >
                 {/* Feature Card */}
                 <div className="relative h-full overflow-hidden rounded-2xl bg-linear-to-br from-background/60 to-background/30 backdrop-blur-lg border border-white/10 p-4 sm:p-6 hover:border-accent/30 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/20 transform hover:-translate-y-1 group hover:bg-linear-to-br hover:from-background/70 hover:to-background/40">
@@ -210,7 +210,7 @@ const About = () => {
                   {/* Content */}
                   <div className="relative z-10 flex flex-col items-center">
                     {/* Icon container */}
-                    <div className={`p-3 rounded-xl bg-linear-to-br ${feature.gradient} text-white mb-4 group-hover:shadow-lg ${feature.shadowColor} transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-6 flex items-center justify-center animate-fade-in`} style={{ animationDelay: `${0.4 + index * 0.1}s` }}>
+                    <div className={`p-3 rounded-xl bg-linear-to-br ${feature.gradient} text-white mb-4 group-hover:shadow-lg ${feature.shadowColor} transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-6 flex items-center justify-center animate-fade-in`} style={{ animationDelay: `${0.28 + index * 0.08}s` }}>
                       {feature.icon}
                     </div>
 
@@ -245,7 +245,7 @@ const About = () => {
           {/* Horizontal Journey Container */}
           <div className="max-w-6xl mx-auto space-y-8">
             {/* Row 1: 2023 Button + Started Journey Box */}
-            <div className={`flex flex-col md:flex-row gap-6 items-center ${aboutVisible ? 'animate-slide-in-left' : 'opacity-0'}`} style={{ animationDelay: "0.6s" }}>
+            <div className={`flex flex-col md:flex-row gap-6 items-center ${aboutVisible ? 'animate-slide-in-left' : 'opacity-0'}`} style={{ animationDelay: "0.4s" }}>
               {/* Year Button */}
               <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-blue-500 to-cyan-500 text-background font-bold text-lg hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105 shrink-0 w-full md:w-auto">
                 2023
@@ -264,7 +264,7 @@ const About = () => {
             </div>
 
             {/* Row 2: First Major Project Box + 2024 Button */}
-            <div className={`flex flex-col md:flex-row-reverse gap-6 items-center ${aboutVisible ? 'animate-slide-in-right' : 'opacity-0'}`} style={{ animationDelay: "0.7s" }}>
+            <div className={`flex flex-col md:flex-row-reverse gap-6 items-center ${aboutVisible ? 'animate-slide-in-right' : 'opacity-0'}`} style={{ animationDelay: "0.48s" }}>
               {/* Year Button */}
               <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-purple-500 to-pink-600 text-background font-bold text-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105 shrink-0 w-full md:w-auto">
                 2024
@@ -283,7 +283,7 @@ const About = () => {
             </div>
 
             {/* Row 3: 2025 Button + Internship & Projects Box */}
-            <div className={`flex flex-col md:flex-row gap-6 items-center ${aboutVisible ? 'animate-slide-in-left' : 'opacity-0'}`} style={{ animationDelay: "0.8s" }}>
+            <div className={`flex flex-col md:flex-row gap-6 items-center ${aboutVisible ? 'animate-slide-in-left' : 'opacity-0'}`} style={{ animationDelay: "0.56s" }}>
               {/* Year Button */}
               <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-indigo-500 to-purple-600 text-background font-bold text-lg hover:shadow-lg hover:shadow-indigo-500/50 transition-all duration-300 transform hover:scale-105 shrink-0 w-full md:w-auto">
                 2025
@@ -302,7 +302,7 @@ const About = () => {
             </div>
 
             {/* Row 4: Current Journey Box + 2026 Button */}
-            <div className="flex flex-col md:flex-row-reverse gap-6 items-center animate-fade-in" style={{ animationDelay: "0.6s" }}>
+            <div className="flex flex-col md:flex-row-reverse gap-6 items-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
               {/* Year Button - Active/Pulsing */}
               <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-linear-to-r from-green-500 to-emerald-600 text-background font-bold text-lg hover:shadow-lg hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-105 shrink-0 w-full md:w-auto animate-pulse">
                 2026

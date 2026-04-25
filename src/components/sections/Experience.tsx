@@ -71,8 +71,14 @@ const Experience = () => {
             {filteredExperiences.map((experience, index) => (
               <div
                 key={experience.id}
-                className={`${experienceVisible ? 'animate-slide-up' : 'opacity-0'}`}
-                style={{ animationDelay: `${0.25 + index * 0.1}s` }}
+                className={`${
+                  experienceVisible
+                    ? index % 2 === 0
+                      ? 'animate-slide-in-right'
+                      : 'animate-slide-in-left'
+                    : 'opacity-0'
+                }`}
+                style={{ animationDelay: `${0.2 + index * 0.08}s` }}
               >
                 <div className={`flex items-center ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"}`}>
                   {/* Timeline dot - visible on lg screens only */}

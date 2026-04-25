@@ -196,7 +196,7 @@ const Contact = () => {
         </div>
 
         {/* Contact Info Grid */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 ${contactVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: "0.1s" }}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 ${contactVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: "0.08s" }}>
           {contactInfo.map((info, index) => (
             <a
               key={info.id}
@@ -237,7 +237,7 @@ const Contact = () => {
         </div>
 
         {/* Contact Form and Social Links */}
-        <div className={`grid grid-cols-1 lg:grid-cols-3 gap-8 ${contactVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: "0.25s" }}>
+        <div className={`grid grid-cols-1 lg:grid-cols-3 gap-8 ${contactVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: "0.2s" }}>
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <form

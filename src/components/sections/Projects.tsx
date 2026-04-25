@@ -48,7 +48,7 @@ const Projects = () => {
         </div>
 
         {/* Category Tabs */}
-        <div className={`flex flex-wrap justify-center gap-3 mb-12 ${projectsVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: "0.1s" }}>
+        <div className={`flex flex-wrap justify-center gap-3 mb-12 ${projectsVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: "0.08s" }}>
           {categories.map((category) => (
             <button
               key={category.id}
@@ -66,12 +66,12 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${projectsVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: "0.2s" }}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${projectsVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: "0.15s" }}>
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
               className={`group h-full ${projectsVisible ? 'animate-slide-up' : 'opacity-0'}`}
-              style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+              style={{ animationDelay: `${0.25 + index * 0.08}s` }}
             >
               {/* Project Card */}
               <div className="relative h-full overflow-hidden rounded-2xl bg-card backdrop-blur-xl border border-border transition-all duration-500 hover:border-accent/50 hover:shadow-2xl hover:shadow-accent/30 transform hover:-translate-y-2">
