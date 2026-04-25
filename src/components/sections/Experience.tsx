@@ -23,7 +23,7 @@ const Experience = () => {
       : experiences.filter((exp) => exp.type === activeType);
 
   return (
-    <section ref={experienceRef} className="min-h-screen py-[20px] sm:py-20 px-3 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
+    <section ref={experienceRef} className="min-h-screen py-5 sm:py-20 px-3 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 -left-40 w-80 h-80 bg-linear-to-br from-accent/10 to-transparent rounded-full blur-3xl animate-pulse" />
@@ -129,7 +129,7 @@ const Experience = () => {
                               key={idx}
                               className={`text-xs sm:text-sm text-muted-foreground group-hover:text-foreground/90 transition-colors duration-300 flex items-start gap-2 ${index % 2 === 0 ? "lg:flex-row-reverse lg:text-right" : "lg:flex-row lg:text-left"}`}
                             >
-                              <span className={`text-accent mt-0.5 flex-shrink-0 ${index % 2 === 0 ? "lg:ml-2" : "lg:mr-0"}`}>•</span>
+                              <span className={`text-accent mt-0.5 shrink-0 ${index % 2 === 0 ? "lg:ml-2" : "lg:mr-0"}`}>•</span>
                               <span>{point}</span>
                             </li>
                           ))}

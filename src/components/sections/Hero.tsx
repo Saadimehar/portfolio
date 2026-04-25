@@ -52,7 +52,7 @@ const socialLinks = [
 
 export const Hero = () => {
   return (
-    <section className="min-h-[100dvh] flex items-center justify-center px-3 sm:px-6 lg:px-8 py-5 relative overflow-hidden bg-background transition-colors duration-300">
+    <section className="min-h-dvh flex items-center justify-center px-3 sm:px-6 lg:px-8 py-5 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-linear-to-br from-accent/5 to-transparent pointer-events-none" />
 

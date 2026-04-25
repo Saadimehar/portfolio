@@ -103,7 +103,7 @@ const About = () => {
   ];
 
   return (
-    <section ref={aboutRef} className="min-h-screen py-[20px] sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
+    <section ref={aboutRef} className="min-h-screen py-5 sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-linear-to-br from-accent/10 to-transparent rounded-full blur-3xl animate-pulse" />
@@ -112,7 +112,7 @@ const About = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Title */}
-        <div className={`text-center mb-8 sm:mb-16 py-[20px] ${aboutVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+        <div className={`text-center mb-8 sm:mb-16 py-5 ${aboutVisible ? 'animate-fade-in' : 'opacity-0'}`}>
           <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-bold mb-4">
             <span className="bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
               About

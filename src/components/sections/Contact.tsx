@@ -173,7 +173,7 @@ const Contact = () => {
     <section
       ref={contactRef}
       id="contact"
-      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-[20px] sm:py-20 relative overflow-hidden bg-background transition-colors duration-300"
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-5 sm:py-20 relative overflow-hidden bg-background transition-colors duration-300"
     >
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-linear-to-br from-accent/5 via-transparent to-secondary/5 pointer-events-none" />
