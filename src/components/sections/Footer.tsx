@@ -3,12 +3,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [subscribeStatus, setSubscribeStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const { ref: footerRef, isVisible: footerVisible } = useScrollAnimation(0.2);
 
   // Quick Links
   const quickLinks = [
@@ -80,7 +78,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer ref={footerRef} className="relative bg-card text-foreground border-t border-border transition-colors duration-300">
+    <footer className="relative bg-card text-foreground border-t border-border transition-colors duration-300">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-linear-to-b from-accent/5 via-transparent to-secondary/5 pointer-events-none" />
 
@@ -89,7 +87,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
             {/* Brand Section */}
-            <div className={`space-y-6 ${footerVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0s' }}>
+            <div className="space-y-6 animate-fade-in">
               <div>
                 <h3 className="text-[clamp(1.5rem,4vw,2rem)] font-bold bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
                   Muhammad Saad
@@ -120,13 +118,13 @@ const Footer = () => {
             </div>
 
             {/* Quick Links */}
-            <div className={`space-y-6 ${footerVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.08s' }}>
+            <div className="space-y-6 animate-fade-in">
               <h3 className="text-[clamp(1rem,2.5vw,1.25rem)] font-semibold text-foreground">
                 Quick Links
               </h3>
               <ul className="space-y-3">
-                {quickLinks.map((link, index) => (
-                  <li key={link.name} className={`${footerVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: `${0.12 + index * 0.04}s` }}>
+                {quickLinks.map((link) => (
+                  <li key={link.name}>
                     <a
                       href={link.href}
                       className="text-muted-foreground hover:text-accent transition-colors duration-300 text-[clamp(0.75rem,1.5vw,0.875rem)] font-medium flex items-center gap-2 group"
@@ -140,7 +138,7 @@ const Footer = () => {
             </div>
 
             {/* About Short */}
-            <div className={`space-y-6 ${footerVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.16s' }}>
+            <div className="space-y-6 animate-fade-in">
               <h3 className="text-[clamp(1rem,2.5vw,1.25rem)] font-semibold text-foreground">
                 Services
               </h3>
@@ -173,7 +171,7 @@ const Footer = () => {
             </div>
 
             {/* Newsletter Signup */}
-            <div className={`space-y-6 ${footerVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.24s' }}>
+            <div className="space-y-6 animate-fade-in">
               <h3 className="text-[clamp(1rem,2.5vw,1.25rem)] font-semibold text-foreground">
                 Stay Updated
               </h3>

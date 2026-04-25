@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/Button";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Contact = () => {
   // EmailJS Configuration - Hardcoded for reliability in production
@@ -13,8 +12,6 @@ const Contact = () => {
     serviceId: "service_saadimehar",
     templateId: "template_uprzefv",
   };
-
-  const { ref: contactRef, isVisible: contactVisible } = useScrollAnimation(0.2);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -171,16 +168,15 @@ const Contact = () => {
 
   return (
     <section
-      ref={contactRef}
       id="contact"
-      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-5 sm:py-20 relative overflow-hidden bg-background transition-colors duration-300"
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-[20px] sm:py-20 relative overflow-hidden bg-background transition-colors duration-300"
     >
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-linear-to-br from-accent/5 via-transparent to-secondary/5 pointer-events-none" />
 
       <div className="max-w-6xl w-full relative z-10">
         {/* Header */}
-        <div className={`text-center mb-16 ${contactVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-bold mb-6">
             <span className="block dark:text-white text-foreground mb-2">
               Let's Work Together
@@ -196,13 +192,12 @@ const Contact = () => {
         </div>
 
         {/* Contact Info Grid */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 ${contactVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: "0.08s" }}>
-          {contactInfo.map((info, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {contactInfo.map((info) => (
             <a
               key={info.id}
               href={info.link}
-              className={`group relative overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:shadow-lg hover:shadow-accent/20 hover:border-accent/50 cursor-pointer ${contactVisible ? 'animate-bounce-in' : 'opacity-0'}`}
-              style={{ animationDelay: `${0.15 + index * 0.08}s` }}
+              className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:shadow-lg hover:shadow-accent/20 hover:border-accent/50 cursor-pointer"
             >
               {/* Gradient background on hover */}
               <div className={`absolute inset-0 bg-linear-to-br ${info.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
@@ -237,7 +232,7 @@ const Contact = () => {
         </div>
 
         {/* Contact Form and Social Links */}
-        <div className={`grid grid-cols-1 lg:grid-cols-3 gap-8 ${contactVisible ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: "0.2s" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <form

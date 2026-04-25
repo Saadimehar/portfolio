@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { skills } from "@/data/skills";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 type SkillCategory = "all" | "frontend" | "backend" | "design" | "tools" | "languages" | "additional";
 
@@ -56,7 +55,6 @@ const Skills = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [buttonSize, setButtonSize] = useState("desktop");
-  const { ref: skillsRef, isVisible: skillsVisible } = useScrollAnimation(0.2);
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
 
   // Detect screen size for responsive button sizing
@@ -130,7 +128,7 @@ const Skills = () => {
   };
 
   return (
-    <section ref={skillsRef} className="min-h-screen py-5 sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
+    <section className="min-h-screen py-[20px] sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background transition-colors duration-300">
       {/* Background gradient elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-linear-to-br from-accent/10 to-transparent rounded-full blur-3xl animate-pulse" />
@@ -139,7 +137,7 @@ const Skills = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Title */}
-        <div className={`text-center mb-16 ${skillsVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-bold mb-4">
             <span className="bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
               Skills & Expertise
@@ -151,7 +149,7 @@ const Skills = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16 animate-fade-in" style={{ animationDelay: "0.08s" }}>
+        <div className="flex flex-wrap justify-center gap-3 mb-16 animate-fade-in" style={{ animationDelay: "0.1s" }}>
           {skillCategories.map((category) => (
             <button
               key={category.id}
@@ -169,7 +167,7 @@ const Skills = () => {
         </div>
 
         {/* Horizontal Scrolling Skills with Arrow Buttons */}
-        <div className="animate-fade-in" style={{ animationDelay: "0.15s" }}>
+        <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
           {/* Skills Container with Arrows */}
           <div className="relative group flex items-center justify-center gap-0 sm:gap-0 lg:gap-0">
             {/* Left Arrow Button - Responsive & Beautiful Design */}
