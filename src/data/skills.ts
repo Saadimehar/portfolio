@@ -27,7 +27,6 @@ export const skills: Skill[] = [
   { name: "Webflow", icon: "webflow", category: "tools" },
   { name: "SEO", icon: "seo", category: "tools" },
   { name: "Git", icon: "git", category: "tools" },
-  { name: "Docker", icon: "docker", category: "tools" },
   { name: "VS Code", icon: "vscode", category: "tools" },
   { name: "Vercel", icon: "vercel", category: "tools" },
   

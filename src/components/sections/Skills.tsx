@@ -18,7 +18,6 @@ const iconMap: { [key: string]: string } = {
   figma: "🎭",
   adobexd: "🎯",
   git: "🔀",
-  docker: "🐳",
   vscode: "💻",
   vercel: "▲",
   cpp: "🔧",
