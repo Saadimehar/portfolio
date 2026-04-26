@@ -59,8 +59,19 @@ export const projects: Project[] = [
 },
 
   // Web Development Projects
+  {
+    id: 6,
+    title: "Black Limo Website",
+  description: "A modern limousine booking platform built with MERN stack.",
+  longDescription: "A full-stack limousine booking web application developed using React for the frontend, Node.js and Express for the backend, and MongoDB for data storage. The platform allows users to بسهولة browse services, make bookings, and interact with a responsive and dynamic interface. It features RESTful API integration, smooth navigation using React Router, and efficient data handling through Mongoose. The system is designed with scalability, performance, and user experience in mind.",
+  image: "/images/projects/Blacklimo.png",
+  tags: ["React", "Node.js", "Express", "MongoDB", "MERN Stack", "Axios"],
+  category: "fullstack",
+  github: "https://github.com/israrahmad831/Black-Limo-Website",
+  featured: true,
+  },
 {
-  id: 6,
+  id: 7,
   title: "CodeHub Website - Frontend",
   description: "Frontend of a full-stack chat application with real-time messaging and AI features.",
   longDescription: "Developed the frontend of the CodeHub web application using React and Node.js. Features include real-time messaging with Socket.io, AI-powered responses, and secure user authentication. The design emphasizes responsive layouts and seamless user experience.",
@@ -71,7 +82,7 @@ export const projects: Project[] = [
   featured: true,
 },
   {
-  id: 7,
+  id: 8,
   title: "CodeHub Website - Backend",
   description: "Backend of a full-stack chat application with real-time messaging and AI integration.",
   longDescription: "Developed the backend of the CodeHub web application using Node.js and Express.js. Includes API endpoints for user authentication, real-time messaging with Socket.io, AI-powered responses, and MongoDB database management. Ensures secure, scalable, and efficient server-side operations.",
@@ -82,7 +93,7 @@ export const projects: Project[] = [
   featured: true,
 },
   {
-  id: 8,
+  id: 9,
   title: "Portfolio Website",
   description: "Personal portfolio website built with Next.js and modern web technologies.",
   longDescription: "Developed a full-featured portfolio website using Next.js, React, and Tailwind CSS. Showcases projects, skills, and contact information with smooth animations, responsive layouts, and optimized performance for both desktop and mobile users.",
@@ -93,17 +104,7 @@ export const projects: Project[] = [
   live: "https://example.vercel.app",
   featured: true,
 },
-  {
-    id: 9,
-    title: "Black Limo Website",
-  description: "A modern limousine booking platform built with MERN stack.",
-  longDescription: "A full-stack limousine booking web application developed using React for the frontend, Node.js and Express for the backend, and MongoDB for data storage. The platform allows users to بسهولة browse services, make bookings, and interact with a responsive and dynamic interface. It features RESTful API integration, smooth navigation using React Router, and efficient data handling through Mongoose. The system is designed with scalability, performance, and user experience in mind.",
-  image: "/images/projects/Blacklimo.png",
-  tags: ["React", "Node.js", "Express", "MongoDB", "MERN Stack", "Axios"],
-  category: "fullstack",
-  github: "https://github.com/israrahmad831/Black-Limo-Website",
-  featured: true,
-  },
+  
   {
   id: 10,
   title: "Facilitation Portal",
