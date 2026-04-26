@@ -93,7 +93,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-muted hover:bg-muted/80 text-foreground transition-all duration-300 cursor-pointer"
+              className="p-3 rounded-lg bg-muted hover:bg-muted/80 text-foreground transition-all duration-300 cursor-pointer"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (

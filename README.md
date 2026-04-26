@@ -1,302 +1,74 @@
-# Muhammad Saad - Professional Portfolio
+# Muhammad Saad - Portfolio
 
-A modern, responsive portfolio website built with Next.js 16, React 19, TypeScript, and Tailwind CSS. Features dark/light theme toggle, project showcase, skills display, work experience, and a fully functional contact form with email integration via Formspree.
+A modern portfolio built with **Next.js**, **React**, **TypeScript**, and **Tailwind CSS**. Features dark/light theme, projects showcase, and EmailJS contact form.
 
-**Live Site:** https://saadimehar.vercel.app | **GitHub:** https://github.com/Saadimehar/portfolio
+**[🔗 Live Site](https://saadimehar.vercel.app) | [GitHub](https://github.com/Saadimehar/portfolio)**
 
 ---
 
-## 🎯 Key Features
+## ✨ Features
 
-### ✨ Core Features
-- **🌓 Dark/Light Mode** - Seamless theme switching with persistent storage
-- **📱 Fully Responsive** - Optimized for mobile, tablet, and desktop
-- **✉️ Contact Form** - Integrated with Formspree for email delivery
-- **🎨 Modern Design** - Clean UI with smooth animations and gradients
-- **⚡ Fast Performance** - Next.js 16 with TypeScript
-
-### 📋 Portfolio Sections
-1. **Hero** - Eye-catching intro with CTA buttons and social links
-2. **About** - Professional background and introduction
-3. **Projects** - Portfolio with live demos and GitHub links
-4. **Skills** - Categorized skills with icons
-5. **Experience** - Work experience and education timeline
-6. **Contact** - Email form with validation
-7. **Footer** - Quick navigation and social links
-
-### 📧 Contact Form
-- **Email Service:** Formspree integration
-- Real-time validation and error handling
-- Success and error notifications
-- Direct email to saad49861@gmail.com
+- 🌓 Dark/Light Mode
+- 📱 Fully Responsive
+- ✉️ Contact Form (EmailJS)
+- 🎨 Modern Design with Animations
 
 ---
 
 ## 🛠 Tech Stack
 
-| Category | Technologies |
-|----------|---|
-| **Frontend** | Next.js 16.2.2, React 19, TypeScript, Tailwind CSS 4 |
-| **Email** | Formspree |
-| **Styling** | Tailwind CSS, PostCSS, clsx, tailwind-merge |
-| **Icons** | Lucide React |
-| **Theme** | next-themes |
-| **Tools** | ESLint, Prettier, Git |
-| **Deployment** | Vercel |
+Next.js 16 • React 19 • TypeScript • Tailwind CSS • EmailJS • next-themes
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js 18+ 
-- npm/yarn
-- Git
-
-### Installation
+## 🚀 Quick Start
 
 ```bash
-# Clone repository
 git clone https://github.com/Saadimehar/portfolio.git
 cd portfolio
-
-# Install dependencies
 npm install
-
-# Create environment file
-cp .env.example .env.local
-```
-
-### Environment Setup
-
-Edit `.env.local` with your EmailJS credentials from https://www.emailjs.com:
-
-```env
-# EmailJS Configuration (from https://www.emailjs.com)
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-
-# Optional: SMTP Fallback (for automatic failover)
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your_email@gmail.com
-SMTP_PASSWORD=your_app_password
-SMTP_FROM_EMAIL=your_email@gmail.com
-SMTP_FROM_NAME=Your Name
-```
-
-### Email Setup (EmailJS)
-
-1. **Create Account** - Sign up at https://www.emailjs.com
-2. **Add Email Service** - Connect Gmail or another email provider
-3. **Get Credentials:**
-   - Copy **Public Key** from Account → API Keys
-   - Note **Service ID** from Email Services
-   - Create Email Template with name like `contact_template`
-   - Copy **Template ID**
-4. **Add to .env.local** - Paste the three IDs above
-
-### Run Development Server
-
-```bash
 npm run dev
 ```
 
-Open http://localhost:3000 in browser. Form will send emails to saad49861@gmail.com.
-
-### Build for Production
-
-```bash
-npm run build
-npm start
-```
+Open http://localhost:3000
 
 ---
 
-## 📂 Project Structure
+## 📧 Setup EmailJS
 
-```
-src/
-├── app/
-│   ├── api/contact/route.ts     # Email API endpoint (SMTP fallback)
-│   ├── layout.tsx                # Root layout with theme provider
-│   ├── globals.css               # Global styles
-│   └── page.tsx                  # Home page
-├── components/
-│   ├── Navbar.tsx                # Navigation with theme toggle
-│   ├── layout/                   # Layout components
-│   └── sections/                 # Page sections (Hero, About, etc.)
-│       ├── Hero.tsx
-│       ├── About.tsx
-│       ├── Projects.tsx
-│       ├── Skills.tsx
-│       ├── Experience.tsx
-│       ├── Contact.tsx
-│       └── Footer.tsx
-├── ui/                           # Reusable UI components
-├── context/                      # ThemeContext for dark/light mode
-├── hooks/                        # Custom hooks (useScrollspy, useTheme)
-├── config/                       # Site configuration
-├── data/                         # Static data (projects, skills, experience)
-├── types/                        # TypeScript interfaces
-└── lib/                          # Utility functions
-```
+1. Sign up at [emailjs.com](https://www.emailjs.com)
+2. Create email template with: `name`, `email`, `subject`, `message`
+3. Create `.env.local`:
 
----
-
-## ✅ Recent Improvements
-
-### 1. Hero Section - Responsive Buttons
-Fixed button overlap on mobile by implementing responsive flex layout:
-- Stack vertically on mobile, horizontally on sm+ screens
-- Full-width buttons on mobile for accessibility
-
-### 2. Skills Section - Right Scroll Arrow
-Fixed arrow visibility by adding proper container measurement:
-- Arrow shows correctly on initial page load
-- Updates on window resize and category changes
-- Seamless horizontal scrolling
-
-### 3. Contact Form - Email Delivery
-Implemented dual email system with automatic failover:
-- **Primary:** EmailJS (fast, client-side)
-- **Fallback:** SMTP API route (reliable server-side)
-- Sends confirmation emails to visitor
-- Form validation and error handling
-
----
-
-## 🔗 Important Links
-
-- **Portfolio:** https://portfolio-saadimehar.vercel.app
-- **GitHub:** https://github.com/Saadimehar/portfolio
-- **Email:** saad49861@gmail.com
-- **Phone:** +92 304 9194954
-- **Location:** Wah Cantt, Pakistan
-
-### Social Links
-- [LinkedIn](https://www.linkedin.com/in/muhammad-saad-a58a891a2/)
-- [GitHub](https://github.com/Saadimehar)
-- [Instagram](https://instagram.com/isaadimehar)
-- [Figma](https://figma.com/@saadimehar)
-
----
-
-## 📝 Available Scripts
-
-```bash
-npm run dev      # Start development server (port 3000)
-npm run build    # Build for production
-npm start        # Start production server
-npm run lint     # Run ESLint
-```
-
----
-
-## 🐛 Troubleshooting
-
-### Emails Not Sending?
-**Common Issues & Solutions:**
-
-1. **Environment Variables Not Set on Vercel**
-   - Go to Vercel Dashboard → Settings → Environment Variables
-   - Add all three variables with correct scopes (Production, Preview, Development)
-   - Redeploy after adding variables
-   - Verify values match EmailJS account exactly
-
-2. **DOM Attachment Issue** (FIXED in latest version)
-   - The form element must be attached to DOM before EmailJS sends
-   - Current implementation: `document.body.appendChild(tempForm)` before send, then removed after
-   - If form not sending, check console for "Email sent successfully" message
-
-3. **EmailJS Configuration**
-   - Verify Public Key, Service ID, and Template ID in `.env.local`
-   - Ensure EmailJS service is **Connected** (not Failed) in dashboard
-   - Email template must exist with fields: name, email, subject, message, to_email
-
-4. **Check Browser Console (F12)**
-   - Look for ✅ success message: "Email sent successfully!"
-   - Look for ❌ error messages with specific error details
-   - Check for 🔧 "Public Key loaded" indicator
-
-### Theme Not Persisting?
-- Clear browser cache and localStorage
-- Restart dev server
-- Check if `next-themes` package is properly installed
-
-### Build Errors?
-```bash
-# Clean install
-rm -rf node_modules package-lock.json
-npm install
-npm run build
-```
-
----
-
-## 📧 EmailJS Integration Details
-
-### What Was Fixed
-The contact form initially had a critical bug where the temporary form element was created in memory but **not attached to the DOM** before EmailJS tried to send it. EmailJS requires the form to be present in the document to serialize field values.
-
-**Solution Implemented:**
-```javascript
-// ✅ Correct implementation
-document.body.appendChild(tempForm);           // Attach to DOM
-const response = await emailjs.sendForm(...);   // Now EmailJS can read fields
-document.body.removeChild(tempForm);           // Clean up after sending
-```
-
-### How the Contact Form Works
-1. User submits form with name, email, subject, and message
-2. Form data is validated client-side
-3. Temporary form element created with all required fields
-4. **Form attached to DOM** (critical for EmailJS)
-5. EmailJS `sendForm()` submits to your configured email service
-6. **Form removed from DOM** (cleanup)
-7. Success/error message displayed to user
-8. Form fields cleared on success
-
-### Environment Variables
 ```env
-# Required for EmailJS client-side email sending
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key     # From Account → API Keys
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id     # From Email Services
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id   # From Email Templates
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 ```
 
-**Note:** `NEXT_PUBLIC_` prefix makes these accessible in browser (safe - it's the public key, not secret key)
-
-### Production Deployment to Vercel
-
-1. **Push code to GitHub** (already set up)
-2. **Access Vercel Dashboard:** https://vercel.com/dashboard
-3. **Select your portfolio project**
-4. **Settings → Environment Variables**
-5. **Add the three EmailJS variables:**
-   - Set scope to: Production, Preview, Development
-   - Use exact values from `.env.local`
-6. **Click Deployments → Redeploy** (to apply new variables)
-7. **Wait for green checkmark** (deployment complete)
-8. **Test at:** https://saadimehar.vercel.app#contact
-
-### Testing the Integration
-- Submit test message through contact form
-- Check console (F12) for success/error messages
-- Verify email arrives in inbox
-- Confirm success message displays on page
+4. Deploy to Vercel and add env variables in Settings
 
 ---
 
-## 📄 License
+## 📝 Scripts
 
-This portfolio is open source and available on GitHub.
+```bash
+npm run dev      # Development
+npm run build    # Production build
+npm run lint     # Linting
+```
 
 ---
 
-**Last Updated:** April 2026 | **Status:** ✅ Production Ready | **EmailJS:** ✅ Fully Integrated
-   - Create a `.env.local` file in the root directory:
+## 🔗 Contact
+
+- Email: saad49861@gmail.com
+- Phone: +92 304 9194954
+- [LinkedIn](https://linkedin.com/in/muhammad-saad-a58a891a2/) • [GitHub](https://github.com/Saadimehar) • [Instagram](https://instagram.com/isaadimehar)
+
+---
+
+**Status:** ✅ Production Ready
 ```
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
