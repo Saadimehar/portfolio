@@ -178,7 +178,7 @@ const Contact = () => {
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-bold mb-6">
-            <span className="block dark:text-white text-foreground mb-2">
+            <span className="block light:text-black text-foreground mb-2">
               Let's Work Together
             </span>
             <span className="block bg-linear-to-r from-accent via-purple-500 to-secondary bg-clip-text text-transparent">
@@ -281,7 +281,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      placeholder="John Doe"
+                      placeholder="David Smith"
                       className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition-all duration-300"
                     />
                   </div>
@@ -298,7 +298,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      placeholder="john@example.com"
+                      placeholder="david@example.com"
                       className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition-all duration-300"
                     />
                   </div>
