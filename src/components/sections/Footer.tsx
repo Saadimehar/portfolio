@@ -250,7 +250,7 @@ const Footer = () => {
               <span className="text-border">•</span>
               <a
                 href={siteConfig.resume}
-                download="Muhammad_Saad_CV.pdf"
+                download="Saad_Resume.pdf"
                 className="text-muted-foreground hover:text-accent transition-colors duration-300 font-medium inline-flex items-center gap-1"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

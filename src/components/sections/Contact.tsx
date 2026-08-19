@@ -455,7 +455,7 @@ const Contact = () => {
             {/* Download Resume CTA */}
             <a
               href={siteConfig.resume}
-              download="Muhammad_Saad_CV.pdf"
+              download="Saad_Resume.pdf"
               className="block group relative overflow-hidden rounded-2xl border border-border bg-linear-to-br from-accent/20 via-card to-secondary/10 p-8 transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/20"
             >
               {/* Gradient overlay */}
