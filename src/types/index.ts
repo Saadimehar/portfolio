@@ -29,3 +29,13 @@ export interface Skill {
   category: "frontend" | "backend" | "design" | "tools" | "languages" | "additional";
   level?: "expert" | "advanced" | "intermediate";
 }
+
+export interface Certification {
+  id: number;
+  title: string;
+  issuer: string;
+  date: string;
+  category: "courses" | "internships" | "sports" | "soft-skills";
+  description: string;
+  image?: string;
+}

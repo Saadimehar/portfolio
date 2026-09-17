@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Hey, I'm Muhammad Saad",
   title: "Muhammad Saad",
-  description: "Aspiring Software Engineer, Full Stack Web Developer, and UI/UX Designer, I am a passionate Software Engineering student with a focus on full-stack web development (MERN stack). I love building modern, user-friendly web applications and creating impactful digital experiences through clean design and efficient code.",
+  description: "I am a Software Engineer, Web Developer, and UI/UX Designer passionate about building modern, user-friendly digital experiences through thoughtful design and efficient development. I enjoy transforming ideas into polished, responsive interfaces and practical solutions that not only look great but also create meaningful value for users. With a strong focus on clean design, problem-solving, and technical execution, I strive to craft products that are intuitive, functional, and impactful.",
   location: "Wah Cantt, Pakistan",
   email: "saad49861@gmail.com",
   phone: "+92 304 9194954 ",

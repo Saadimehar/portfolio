@@ -12,7 +12,7 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   
   // Track active section
-  const activeSection = useScrollspy(['home', 'about', 'projects', 'skills', 'experience', 'contact'], 100);
+  const activeSection = useScrollspy(['home', 'about', 'projects', 'certifications', 'skills', 'experience', 'contact'], 100);
 
   useEffect(() => {
     setMounted(true);
@@ -22,8 +22,9 @@ export default function Navbar() {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Certifications', href: '#certifications' },
     { name: 'Skills', href: '#skills' },
-    {name: 'Experience', href: '#experience' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Contact', href: '#contact' },
   ];
 

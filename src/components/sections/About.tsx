@@ -142,13 +142,13 @@ const About = () => {
 
                   <div className="space-y-3 sm:space-y-4 text-muted-foreground text-xs sm:text-sm md:text-base leading-relaxed text-justify">
                     <p>
-                      I'm a passionate Software Engineering student specializing in full-stack web development. My journey in tech started with a curiosity to build things and solve problems through code.
+                      I'm a passionate Software Engineer, Web Developer, and UI/UX Designer focused on creating elegant digital experiences that are both functional and visually compelling.
                     </p>
                     <p>
-                      With expertise in the MERN stack, I've developed a keen eye for both aesthetics and functionality. I believe that great software is the intersection of beautiful design and robust engineering.
+                      I enjoy turning ideas into polished products by blending thoughtful design with clean, efficient development. I believe great solutions are shaped by user needs, strong problem-solving, and attention to detail.
                     </p>
                     <p>
-                      Whether I'm crafting responsive frontends, building scalable backends, or designing intuitive user interfaces, I bring dedication and creativity to every project. I'm always eager to learn new technologies and collaborate with talented teams.
+                      From designing intuitive interfaces to building modern web experiences, I bring creativity and technical discipline to every project I work on.
                     </p>
                   </div>
 
