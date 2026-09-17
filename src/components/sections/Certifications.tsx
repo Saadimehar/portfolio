@@ -82,7 +82,7 @@ const Certifications = () => {
                             aria-label={`Open ${item.title} certificate in a new tab`}
                           >
                             <iframe
-                              src={imageUrl}
+                              src={`${imageUrl}#page=1&zoom=page-width&toolbar=0&navpanes=0&scrollbar=0`}
                               title={`${item.title} certificate`}
                               className="h-full w-full border-0 pointer-events-none bg-black"
                             />
