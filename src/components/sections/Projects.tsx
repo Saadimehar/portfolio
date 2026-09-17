@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { projects as allProjects } from "@/data/projects";
 
-type ProjectCategory = "all" | "uiux" | "fullstack" | "frontend" | "software";
+type ProjectCategory = "all" | "uiux" | "fullstack" | "software" | "webflow" | "wordpress";
 
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all");
@@ -13,8 +13,9 @@ const Projects = () => {
   const categories: { id: ProjectCategory; label: string; icon: string }[] = [
     { id: "all", label: "All Projects", icon: "🎯" },
     { id: "uiux", label: "UI/UX Design", icon: "🎨" },
-    { id: "fullstack", label: "Web Development", icon: "🌐" },
-    { id: "frontend", label: "Frontend", icon: "🎭" },
+    { id: "webflow", label: "Webflow", icon: "🌐" },
+    { id: "wordpress", label: "WordPress", icon: "📝" },
+    { id: "fullstack", label: "Web Development", icon: "💻" },
     { id: "software", label: "Other", icon: "⚙️" },
   ];
 
@@ -101,7 +102,21 @@ const Projects = () => {
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
-                        <span className="text-sm font-semibold">Website</span>
+                        <span className="text-sm font-semibold">Replica</span>
+                      </a>
+                    )}
+
+                    {project.mainWebsite && (
+                      <a
+                        href={project.mainWebsite}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-6 py-3 bg-background/80 border-2 border-foreground dark:border-white text-foreground dark:text-white font-bold rounded-xl flex items-center gap-2 hover:border-accent hover:bg-accent/20 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm cursor-pointer"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253zm9-13v13m0-13c-1.168-.776-2.754-1.253-4.5-1.253S15.832 5.477 14 6.253v13c1.168-.776 2.754-1.253 4.5-1.253s3.332.477 4.5 1.253z" />
+                        </svg>
+                        <span className="text-sm font-semibold">Main Site</span>
                       </a>
                     )}
 
@@ -128,8 +143,9 @@ const Projects = () => {
                   <div className="mb-3">
                     <span className="text-xs font-bold uppercase tracking-wider bg-linear-to-r from-accent to-secondary bg-clip-text text-transparent">
                       {project.category === "uiux" && "UI/UX Design"}
+                      {project.category === "webflow" && "Webflow"}
+                      {project.category === "wordpress" && "WordPress"}
                       {project.category === "fullstack" && "Full Stack"}
-                      {project.category === "frontend" && "Frontend"}
                       {project.category === "software" && "Other"}
                     </span>
                   </div>
@@ -200,6 +216,8 @@ const Projects = () => {
                       onClick={() => {
                         if (project.live) {
                           window.open(project.live, "_blank");
+                        } else if (project.mainWebsite) {
+                          window.open(project.mainWebsite, "_blank");
                         } else if (project.github) {
                           window.open(project.github, "_blank");
                         }

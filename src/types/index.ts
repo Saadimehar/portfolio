@@ -5,9 +5,10 @@ export interface Project {
   longDescription?: string;
   image: string;
   tags: string[];
-  category: "fullstack" | "frontend" | "uiux" | "software" | "all";
+  category: "fullstack" | "uiux" | "software" | "webflow" | "wordpress" | "all";
   github?: string;
   live?: string;
+  mainWebsite?: string;
   featured: boolean;
 }
 
