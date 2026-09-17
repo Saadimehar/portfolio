@@ -15,15 +15,6 @@ const certificateCategories: { id: CertificationCategory; label: string; icon: s
 
 const Certifications = () => {
   const [activeCategory, setActiveCategory] = useState<CertificationCategory>("all");
-  const [uploadedImages, setUploadedImages] = useState<Record<number, string>>({});
-
-  const handleImageUpload = (id: number, event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    const previewUrl = URL.createObjectURL(file);
-    setUploadedImages((prev) => ({ ...prev, [id]: previewUrl }));
-  };
 
   const filteredCertifications =
     activeCategory === "all"
@@ -68,7 +59,7 @@ const Certifications = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
           {filteredCertifications.map((item) => {
-            const imageUrl = uploadedImages[item.id] || item.image;
+            const imageUrl = item.image;
             const isPdf = (imageUrl || "").toLowerCase().endsWith(".pdf");
 
             return (
@@ -125,32 +116,12 @@ const Certifications = () => {
                               Open certificate
                             </div>
                           </div>
-
-                          <label className="absolute top-3 right-3 inline-flex items-center gap-2 rounded-full bg-background/80 px-3 py-1.5 text-[10px] font-medium text-foreground border border-white/10 backdrop-blur-sm cursor-pointer shadow-md hover:bg-background transition-colors">
-                            <span>📷</span>
-                            Change
-                            <input
-                              type="file"
-                              accept="image/*"
-                              className="hidden"
-                              onChange={(event) => handleImageUpload(item.id, event)}
-                            />
-                          </label>
                         </div>
                       )
                     ) : (
-                      <label className="flex h-[420px] sm:h-[460px] w-full cursor-pointer items-center justify-center border-2 border-dashed border-border bg-black transition-colors hover:border-accent/50 hover:bg-accent/5">
-                        <input
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          onChange={(event) => handleImageUpload(item.id, event)}
-                        />
-                        <div className="flex flex-col items-center justify-center gap-2 text-center px-4">
-                          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 text-2xl text-accent">📷</span>
-                          <span className="text-sm font-medium text-foreground">Add certificate picture</span>
-                        </div>
-                      </label>
+                      <div className="flex h-[420px] sm:h-[460px] w-full items-center justify-center border-2 border-dashed border-border bg-black text-foreground">
+                        <span className="text-sm font-medium">Certificate unavailable</span>
+                      </div>
                     )}
                   </div>
 
