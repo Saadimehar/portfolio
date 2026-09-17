@@ -109,4 +109,22 @@ export const certifications: Certification[] = [
     description: "Completed a UI/UX internship focused on design thinking, user interface refinement, and practical project work.",
     image: "/images/Certificates/UI UX_Internship_Certificate.jpg",
   },
+  {
+    id: 13,
+    title: "Sports Head Certificate",
+    issuer: "Air University",
+    date: "2025-26",
+    category: "sports",
+    description: "Recognized for outstanding leadership and dedicated service as Student Sports Head during the Air University Annual Championship.",
+    image: "/images/Certificates/Sports_head_certificate.jpeg",
+  },
+  {
+    id: 14,
+    title: "Hiking Competition Silver Medal Runner-Up",
+    issuer: "Air University",
+    date: "2025-26",
+    category: "sports",
+    description: "Awarded runner-up recognition for athletic performance and competitive excellence in the hiking competition.",
+    image: "/images/Certificates/hiking_certificate.jpeg",
+  },
 ];
